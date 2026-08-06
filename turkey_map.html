@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_93d399831d80106cd9938d7e5fd0359b {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var map = null;
+                for (var key in window) {
+                    if (key.startsWith('map_')) {
+                        map = window[key];
+                        break;
+                    }
+                }
+                if (map) {
+                    var heatData = [[40.41, 26.67, 0.3602], [39.7, 26.83, 0.3898], [39.59, 27.02, 0.4471], [39.32, 26.69, 0.4294], [39.07, 26.89, 0.4532], [38.67, 26.75, 0.3857], [38.28, 26.37, 0.392], [38.1969, 26.8383, 0.4022], [38.55, 27.45, 0.39159999999999995], [37.8579, 27.261, 0.392], [37.67, 27.16, 0.3608], [37.31, 27.78, 0.392], [37.0344, 27.4305, 0.3864], [36.7225, 27.6853, 0.392], [36.855, 28.2742, 0.3857], [36.76, 28.8, 0.3602], [36.62, 29.11, 0.3857], [36.2, 29.638, 0.3602], [36.37, 30.28, 0.3602], [36.5986, 30.5603, 0.09], [36.7869, 31.4442, 0.3602], [36.5438, 31.9998, 0.0814], [36.0753, 32.8369, 0.3857], [36.3778, 33.9344, 0.392], [37.45, 35.81, 0.3864], [36.48, 36.2, 0.0394], [40.07, 29.13, 0.0891], [41.18, 28.98, 0.038900000000000004], [40.67, 30.02, 0.038900000000000004], [40.61, 31.28, 0.0581], [41.89, 32.9, 0.0216], [41.94, 34.58, 0.021], [40.81, 39.6, 0.021099999999999997], [37.76, 29.27, 0.42579999999999996], [37.87, 30.85, 0.4132], [40.47, 32.65, 0.3957], [39.1, 39.54, 0.0467]];
+                    L.heatLayer(heatData, {
+                        radius: 16,
+                        blur: 12,
+                        max: 1.0,
+                        minOpacity: 0.30,
+                        gradient: {
+                            0.15: '#2ecc71',
+                            0.40: '#a3e635',
+                            0.60: '#f1c40f',
+                            0.78: '#e67e22',
+                            0.90: '#e74c3c'
+                        }
+                    }).addTo(map);
+                }
+            }, 300);
+        });
+    </script>
+    
+    
+            <div class="folium-map" id="map_93d399831d80106cd9938d7e5fd0359b" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_93d399831d80106cd9938d7e5fd0359b = L.map(
+                "map_93d399831d80106cd9938d7e5fd0359b",
+                {
+                    center: [38.8, 32.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 6,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_fbed062a0c5edd7c1422a438115292d2 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "\u0026copy; OpenStreetMap \u0026copy; CARTO",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_fbed062a0c5edd7c1422a438115292d2.addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+            var circle_marker_7173b35dd329c67ceeb98a219d2b0beb = L.circleMarker(
+                [40.41, 26.67],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_24044350c91c78db11e6a3afac52bc11 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_03b90fd46471edb768e96b836cb6c119 = $(`<div id="html_03b90fd46471edb768e96b836cb6c119" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Çanakkale / Gelibolu</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %36.02 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 30.4°C<br>                 <b>Nem:</b> %51.0<br>                 <b>Rüzgar:</b> 16.0 km/h             </div>         </div>         </div>`)[0];
+                popup_24044350c91c78db11e6a3afac52bc11.setContent(html_03b90fd46471edb768e96b836cb6c119);
+            
+        
+
+        circle_marker_7173b35dd329c67ceeb98a219d2b0beb.bindPopup(popup_24044350c91c78db11e6a3afac52bc11)
+        ;
+
+        
+    
+    
+            var circle_marker_27cd81e7a83b79631b1218bf4f0bf28c = L.circleMarker(
+                [39.7, 26.83],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_6a0b36c8812a11e4839c9c6fb693f48b = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_45556b377861b41fcd738e255da343d1 = $(`<div id="html_45556b377861b41fcd738e255da343d1" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Çanakkale / Kazdağları</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %38.98 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 21.3°C<br>                 <b>Nem:</b> %43.0<br>                 <b>Rüzgar:</b> 16.2 km/h             </div>         </div>         </div>`)[0];
+                popup_6a0b36c8812a11e4839c9c6fb693f48b.setContent(html_45556b377861b41fcd738e255da343d1);
+            
+        
+
+        circle_marker_27cd81e7a83b79631b1218bf4f0bf28c.bindPopup(popup_6a0b36c8812a11e4839c9c6fb693f48b)
+        ;
+
+        
+    
+    
+            var circle_marker_0f0652213ad947df981cdc7a0b478c46 = L.circleMarker(
+                [39.59, 27.02],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_d816fd2d2be7aca3ac750172fd58d0b2 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_922523b4246211190c50b38b23a9d216 = $(`<div id="html_922523b4246211190c50b38b23a9d216" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Balıkesir / Edremit</h4>             <div style="background-color: #a3e635; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %44.71 (DÜŞÜK-ORTA)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 32.9°C<br>                 <b>Nem:</b> %30.0<br>                 <b>Rüzgar:</b> 24.5 km/h             </div>         </div>         </div>`)[0];
+                popup_d816fd2d2be7aca3ac750172fd58d0b2.setContent(html_922523b4246211190c50b38b23a9d216);
+            
+        
+
+        circle_marker_0f0652213ad947df981cdc7a0b478c46.bindPopup(popup_d816fd2d2be7aca3ac750172fd58d0b2)
+        ;
+
+        
+    
+    
+            var circle_marker_55a25a71cf8cd378ec24dbdf3c2580c7 = L.circleMarker(
+                [39.32, 26.69],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_375e018daabc0baff6f87afdf00b29a8 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_3751a2ca89c92a95ba156b76efd3856b = $(`<div id="html_3751a2ca89c92a95ba156b76efd3856b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Balıkesir / Ayvalık</h4>             <div style="background-color: #a3e635; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %42.94 (DÜŞÜK-ORTA)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 33.2°C<br>                 <b>Nem:</b> %32.0<br>                 <b>Rüzgar:</b> 20.6 km/h             </div>         </div>         </div>`)[0];
+                popup_375e018daabc0baff6f87afdf00b29a8.setContent(html_3751a2ca89c92a95ba156b76efd3856b);
+            
+        
+
+        circle_marker_55a25a71cf8cd378ec24dbdf3c2580c7.bindPopup(popup_375e018daabc0baff6f87afdf00b29a8)
+        ;
+
+        
+    
+    
+            var circle_marker_908cb3555e047b657f1c4a4c18e1e8ac = L.circleMarker(
+                [39.07, 26.89],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_9ecbdb3fa6c0c54f9bcbfbdf61927d68 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_09ffb27808cb9a93c07e883358f54f4f = $(`<div id="html_09ffb27808cb9a93c07e883358f54f4f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">İzmir / Dikili</h4>             <div style="background-color: #a3e635; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %45.32 (DÜŞÜK-ORTA)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 34.8°C<br>                 <b>Nem:</b> %26.0<br>                 <b>Rüzgar:</b> 19.0 km/h             </div>         </div>         </div>`)[0];
+                popup_9ecbdb3fa6c0c54f9bcbfbdf61927d68.setContent(html_09ffb27808cb9a93c07e883358f54f4f);
+            
+        
+
+        circle_marker_908cb3555e047b657f1c4a4c18e1e8ac.bindPopup(popup_9ecbdb3fa6c0c54f9bcbfbdf61927d68)
+        ;
+
+        
+    
+    
+            var circle_marker_7a9e6d81cfd0be66ba9e823996d51615 = L.circleMarker(
+                [38.67, 26.75],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_70b7faae3a87f9dff6b2d88adc1eb1dd = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_4d0d237b527a867f6f104bf71ab579be = $(`<div id="html_4d0d237b527a867f6f104bf71ab579be" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">İzmir / Foça</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %38.57 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 30.8°C<br>                 <b>Nem:</b> %48.0<br>                 <b>Rüzgar:</b> 9.2 km/h             </div>         </div>         </div>`)[0];
+                popup_70b7faae3a87f9dff6b2d88adc1eb1dd.setContent(html_4d0d237b527a867f6f104bf71ab579be);
+            
+        
+
+        circle_marker_7a9e6d81cfd0be66ba9e823996d51615.bindPopup(popup_70b7faae3a87f9dff6b2d88adc1eb1dd)
+        ;
+
+        
+    
+    
+            var circle_marker_9022d049b3e2fe808255ffd739a53117 = L.circleMarker(
+                [38.28, 26.37],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_effaedaef26d94149070473d510d1c8b = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_0a493c8b5af5356a11d15c3507651fd7 = $(`<div id="html_0a493c8b5af5356a11d15c3507651fd7" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">İzmir / Çeşme</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %39.2 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 30.1°C<br>                 <b>Nem:</b> %51.0<br>                 <b>Rüzgar:</b> 21.3 km/h             </div>         </div>         </div>`)[0];
+                popup_effaedaef26d94149070473d510d1c8b.setContent(html_0a493c8b5af5356a11d15c3507651fd7);
+            
+        
+
+        circle_marker_9022d049b3e2fe808255ffd739a53117.bindPopup(popup_effaedaef26d94149070473d510d1c8b)
+        ;
+
+        
+    
+    
+            var circle_marker_e2da6539091ce5e325de12770cbb35a1 = L.circleMarker(
+                [38.1969, 26.8383],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_73ca03d93736ee7aca7fefe1dd1b8cdc = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_943b4dad36b17c257b2bf8701fd2e302 = $(`<div id="html_943b4dad36b17c257b2bf8701fd2e302" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">İzmir / Seferihisar</h4>             <div style="background-color: #a3e635; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %40.22 (DÜŞÜK-ORTA)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 33.1°C<br>                 <b>Nem:</b> %38.0<br>                 <b>Rüzgar:</b> 26.9 km/h             </div>         </div>         </div>`)[0];
+                popup_73ca03d93736ee7aca7fefe1dd1b8cdc.setContent(html_943b4dad36b17c257b2bf8701fd2e302);
+            
+        
+
+        circle_marker_e2da6539091ce5e325de12770cbb35a1.bindPopup(popup_73ca03d93736ee7aca7fefe1dd1b8cdc)
+        ;
+
+        
+    
+    
+            var circle_marker_40951eb4b64d1d5ee52757b3595d4cfc = L.circleMarker(
+                [38.55, 27.45],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_5959c679a80e426c3d8d28a2db2cd134 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_eef2b596b4ec1250c3df1bb6b5e95680 = $(`<div id="html_eef2b596b4ec1250c3df1bb6b5e95680" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Manisa / Spil Dağı</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %39.16 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 26.9°C<br>                 <b>Nem:</b> %40.0<br>                 <b>Rüzgar:</b> 21.2 km/h             </div>         </div>         </div>`)[0];
+                popup_5959c679a80e426c3d8d28a2db2cd134.setContent(html_eef2b596b4ec1250c3df1bb6b5e95680);
+            
+        
+
+        circle_marker_40951eb4b64d1d5ee52757b3595d4cfc.bindPopup(popup_5959c679a80e426c3d8d28a2db2cd134)
+        ;
+
+        
+    
+    
+            var circle_marker_ada7f27fc54efbb9d430093a82912d8e = L.circleMarker(
+                [37.8579, 27.261],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_0dd316fa3b1af7e8a6a469486ab9b703 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_2db0eca2f9702cc3632577604f5fb705 = $(`<div id="html_2db0eca2f9702cc3632577604f5fb705" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Aydın / Kuşadası</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %39.2 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 30.1°C<br>                 <b>Nem:</b> %52.0<br>                 <b>Rüzgar:</b> 7.1 km/h             </div>         </div>         </div>`)[0];
+                popup_0dd316fa3b1af7e8a6a469486ab9b703.setContent(html_2db0eca2f9702cc3632577604f5fb705);
+            
+        
+
+        circle_marker_ada7f27fc54efbb9d430093a82912d8e.bindPopup(popup_0dd316fa3b1af7e8a6a469486ab9b703)
+        ;
+
+        
+    
+    
+            var circle_marker_5712d43990f131de7738fb771c7069c3 = L.circleMarker(
+                [37.67, 27.16],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_8ffed529fc90b75c32a850596a7a3fb9 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_43530e69a6e8dfe2664b65ee7a622e2c = $(`<div id="html_43530e69a6e8dfe2664b65ee7a622e2c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Aydın / Dilek Yarımadası</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %36.08 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 28.1°C<br>                 <b>Nem:</b> %48.0<br>                 <b>Rüzgar:</b> 9.3 km/h             </div>         </div>         </div>`)[0];
+                popup_8ffed529fc90b75c32a850596a7a3fb9.setContent(html_43530e69a6e8dfe2664b65ee7a622e2c);
+            
+        
+
+        circle_marker_5712d43990f131de7738fb771c7069c3.bindPopup(popup_8ffed529fc90b75c32a850596a7a3fb9)
+        ;
+
+        
+    
+    
+            var circle_marker_e177f7961845056aeaf0b8645e38cd05 = L.circleMarker(
+                [37.31, 27.78],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_182f61cf8c22967e5a1e4bc5c861788b = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_7250f37f076c601456358379c20e92be = $(`<div id="html_7250f37f076c601456358379c20e92be" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Muğla / Milas</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %39.2 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 30.7°C<br>                 <b>Nem:</b> %59.0<br>                 <b>Rüzgar:</b> 8.0 km/h             </div>         </div>         </div>`)[0];
+                popup_182f61cf8c22967e5a1e4bc5c861788b.setContent(html_7250f37f076c601456358379c20e92be);
+            
+        
+
+        circle_marker_e177f7961845056aeaf0b8645e38cd05.bindPopup(popup_182f61cf8c22967e5a1e4bc5c861788b)
+        ;
+
+        
+    
+    
+            var circle_marker_5364eb55afb0bb6a5aba3760f3702674 = L.circleMarker(
+                [37.0344, 27.4305],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_e6ddaff1638f2be9e1ab17cdc13187f3 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_3f712f2facf2df6326192458085036f0 = $(`<div id="html_3f712f2facf2df6326192458085036f0" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Muğla / Bodrum</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %38.64 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 32.7°C<br>                 <b>Nem:</b> %43.0<br>                 <b>Rüzgar:</b> 9.3 km/h             </div>         </div>         </div>`)[0];
+                popup_e6ddaff1638f2be9e1ab17cdc13187f3.setContent(html_3f712f2facf2df6326192458085036f0);
+            
+        
+
+        circle_marker_5364eb55afb0bb6a5aba3760f3702674.bindPopup(popup_e6ddaff1638f2be9e1ab17cdc13187f3)
+        ;
+
+        
+    
+    
+            var circle_marker_54421e0c05a734217c0bd1467ee3590a = L.circleMarker(
+                [36.7225, 27.6853],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_59d26882f41727b50e747a93b348a19c = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_3e977a0d3c626af1a9468a6e82c954ac = $(`<div id="html_3e977a0d3c626af1a9468a6e82c954ac" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Muğla / Datça</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %39.2 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 29.8°C<br>                 <b>Nem:</b> %57.0<br>                 <b>Rüzgar:</b> 8.2 km/h             </div>         </div>         </div>`)[0];
+                popup_59d26882f41727b50e747a93b348a19c.setContent(html_3e977a0d3c626af1a9468a6e82c954ac);
+            
+        
+
+        circle_marker_54421e0c05a734217c0bd1467ee3590a.bindPopup(popup_59d26882f41727b50e747a93b348a19c)
+        ;
+
+        
+    
+    
+            var circle_marker_cad49e94cd5311422c09c7d19d00ce27 = L.circleMarker(
+                [36.855, 28.2742],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_0104098ccdd7d70727bdcf61d98a65c6 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_c6a9372b43bec8083c3bf5241ab6728a = $(`<div id="html_c6a9372b43bec8083c3bf5241ab6728a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Muğla / Marmaris</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %38.57 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 32.4°C<br>                 <b>Nem:</b> %50.0<br>                 <b>Rüzgar:</b> 9.0 km/h             </div>         </div>         </div>`)[0];
+                popup_0104098ccdd7d70727bdcf61d98a65c6.setContent(html_c6a9372b43bec8083c3bf5241ab6728a);
+            
+        
+
+        circle_marker_cad49e94cd5311422c09c7d19d00ce27.bindPopup(popup_0104098ccdd7d70727bdcf61d98a65c6)
+        ;
+
+        
+    
+    
+            var circle_marker_8bb5a6407af19c9805d6e751bfa6e21a = L.circleMarker(
+                [36.76, 28.8],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_2d2ecf8c174a46c398bf469c37a223aa = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_b2574c32038e255d51571e7ccab3853a = $(`<div id="html_b2574c32038e255d51571e7ccab3853a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Muğla / Dalaman</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %36.02 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 31.2°C<br>                 <b>Nem:</b> %58.0<br>                 <b>Rüzgar:</b> 6.7 km/h             </div>         </div>         </div>`)[0];
+                popup_2d2ecf8c174a46c398bf469c37a223aa.setContent(html_b2574c32038e255d51571e7ccab3853a);
+            
+        
+
+        circle_marker_8bb5a6407af19c9805d6e751bfa6e21a.bindPopup(popup_2d2ecf8c174a46c398bf469c37a223aa)
+        ;
+
+        
+    
+    
+            var circle_marker_5455ddb0dd7f082d201ae555a96022e1 = L.circleMarker(
+                [36.62, 29.11],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_d243c6b716923daaab4f203068da86ec = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_9a9770b19634d1b86f49ef0c2faa4883 = $(`<div id="html_9a9770b19634d1b86f49ef0c2faa4883" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Muğla / Fethiye</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %38.57 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 31.1°C<br>                 <b>Nem:</b> %55.0<br>                 <b>Rüzgar:</b> 5.8 km/h             </div>         </div>         </div>`)[0];
+                popup_d243c6b716923daaab4f203068da86ec.setContent(html_9a9770b19634d1b86f49ef0c2faa4883);
+            
+        
+
+        circle_marker_5455ddb0dd7f082d201ae555a96022e1.bindPopup(popup_d243c6b716923daaab4f203068da86ec)
+        ;
+
+        
+    
+    
+            var circle_marker_b96549e848667ff9b72ce0e3e0f3194f = L.circleMarker(
+                [36.2, 29.638],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_d75d61e910c40ed0d6aa8af470acc75d = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_64dc897084bf36cf73e7d06552912eb2 = $(`<div id="html_64dc897084bf36cf73e7d06552912eb2" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Antalya / Kaş</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %36.02 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 32.4°C<br>                 <b>Nem:</b> %57.0<br>                 <b>Rüzgar:</b> 9.5 km/h             </div>         </div>         </div>`)[0];
+                popup_d75d61e910c40ed0d6aa8af470acc75d.setContent(html_64dc897084bf36cf73e7d06552912eb2);
+            
+        
+
+        circle_marker_b96549e848667ff9b72ce0e3e0f3194f.bindPopup(popup_d75d61e910c40ed0d6aa8af470acc75d)
+        ;
+
+        
+    
+    
+            var circle_marker_0f3790526610dd9cc2489ed68e39490d = L.circleMarker(
+                [36.37, 30.28],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_063e7728fee4024fd17cbe54a111cefe = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_9263d3965b4db15f84fcb1e39ee38a4b = $(`<div id="html_9263d3965b4db15f84fcb1e39ee38a4b" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Antalya / Kumluca</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %36.02 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 31.1°C<br>                 <b>Nem:</b> %64.0<br>                 <b>Rüzgar:</b> 3.6 km/h             </div>         </div>         </div>`)[0];
+                popup_063e7728fee4024fd17cbe54a111cefe.setContent(html_9263d3965b4db15f84fcb1e39ee38a4b);
+            
+        
+
+        circle_marker_0f3790526610dd9cc2489ed68e39490d.bindPopup(popup_063e7728fee4024fd17cbe54a111cefe)
+        ;
+
+        
+    
+    
+            var circle_marker_f2ba2ca55332806f91f1b8a721350197 = L.circleMarker(
+                [36.5986, 30.5603],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_52d2048b57f0c6db96998250a3f69cf4 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_d4ba2874285485d2d294c42b688d3a10 = $(`<div id="html_d4ba2874285485d2d294c42b688d3a10" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Antalya / Kemer</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %9.0 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 29.5°C<br>                 <b>Nem:</b> %82.0<br>                 <b>Rüzgar:</b> 8.9 km/h             </div>         </div>         </div>`)[0];
+                popup_52d2048b57f0c6db96998250a3f69cf4.setContent(html_d4ba2874285485d2d294c42b688d3a10);
+            
+        
+
+        circle_marker_f2ba2ca55332806f91f1b8a721350197.bindPopup(popup_52d2048b57f0c6db96998250a3f69cf4)
+        ;
+
+        
+    
+    
+            var circle_marker_2080a725b27a62c890e3f77ca753efd1 = L.circleMarker(
+                [36.7869, 31.4442],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_1bb02937cede82b6557da35e18eacf5e = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_8feb81c7af13a2f2705a1d31db571b68 = $(`<div id="html_8feb81c7af13a2f2705a1d31db571b68" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Antalya / Manavgat</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %36.02 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 30.3°C<br>                 <b>Nem:</b> %69.0<br>                 <b>Rüzgar:</b> 7.1 km/h             </div>         </div>         </div>`)[0];
+                popup_1bb02937cede82b6557da35e18eacf5e.setContent(html_8feb81c7af13a2f2705a1d31db571b68);
+            
+        
+
+        circle_marker_2080a725b27a62c890e3f77ca753efd1.bindPopup(popup_1bb02937cede82b6557da35e18eacf5e)
+        ;
+
+        
+    
+    
+            var circle_marker_19425d6e6e5f664ebcadfd019a0adf74 = L.circleMarker(
+                [36.5438, 31.9998],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_2d36a690d2bab738b1265be62510df6f = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_d1dfdc4c467488ca93bc457f4d908735 = $(`<div id="html_d1dfdc4c467488ca93bc457f4d908735" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Antalya / Alanya</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %8.14 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 30.6°C<br>                 <b>Nem:</b> %77.0<br>                 <b>Rüzgar:</b> 4.1 km/h             </div>         </div>         </div>`)[0];
+                popup_2d36a690d2bab738b1265be62510df6f.setContent(html_d1dfdc4c467488ca93bc457f4d908735);
+            
+        
+
+        circle_marker_19425d6e6e5f664ebcadfd019a0adf74.bindPopup(popup_2d36a690d2bab738b1265be62510df6f)
+        ;
+
+        
+    
+    
+            var circle_marker_57fc52d48df2242daf66c5512d3d8252 = L.circleMarker(
+                [36.0753, 32.8369],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_af5e515236f9861177b8c9802e87cf27 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_5a59f8c6495b78a665506d2cd582c1f9 = $(`<div id="html_5a59f8c6495b78a665506d2cd582c1f9" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Mersin / Anamur</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %38.57 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 30.0°C<br>                 <b>Nem:</b> %67.0<br>                 <b>Rüzgar:</b> 9.4 km/h             </div>         </div>         </div>`)[0];
+                popup_af5e515236f9861177b8c9802e87cf27.setContent(html_5a59f8c6495b78a665506d2cd582c1f9);
+            
+        
+
+        circle_marker_57fc52d48df2242daf66c5512d3d8252.bindPopup(popup_af5e515236f9861177b8c9802e87cf27)
+        ;
+
+        
+    
+    
+            var circle_marker_767a72c067b1c35b086a21892b3bfa8c = L.circleMarker(
+                [36.3778, 33.9344],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_6b05274032b25fa387dfc9eb59fa6680 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_0fb5c8c029ae111e7b3f0c1946dab673 = $(`<div id="html_0fb5c8c029ae111e7b3f0c1946dab673" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Mersin / Silifke</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %39.2 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 31.8°C<br>                 <b>Nem:</b> %63.0<br>                 <b>Rüzgar:</b> 7.6 km/h             </div>         </div>         </div>`)[0];
+                popup_6b05274032b25fa387dfc9eb59fa6680.setContent(html_0fb5c8c029ae111e7b3f0c1946dab673);
+            
+        
+
+        circle_marker_767a72c067b1c35b086a21892b3bfa8c.bindPopup(popup_6b05274032b25fa387dfc9eb59fa6680)
+        ;
+
+        
+    
+    
+            var circle_marker_71b28f45bcd34b8a75feacd14e58e090 = L.circleMarker(
+                [37.45, 35.81],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_9b664cde0c39195da76baf10070197f3 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_fae6ae5f25ad35c7675e49f269113a94 = $(`<div id="html_fae6ae5f25ad35c7675e49f269113a94" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Adana / Kozan</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %38.64 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 33.3°C<br>                 <b>Nem:</b> %44.0<br>                 <b>Rüzgar:</b> 17.4 km/h             </div>         </div>         </div>`)[0];
+                popup_9b664cde0c39195da76baf10070197f3.setContent(html_fae6ae5f25ad35c7675e49f269113a94);
+            
+        
+
+        circle_marker_71b28f45bcd34b8a75feacd14e58e090.bindPopup(popup_9b664cde0c39195da76baf10070197f3)
+        ;
+
+        
+    
+    
+            var circle_marker_8e33a2c18c71d1ad50a39ab3e05817f4 = L.circleMarker(
+                [36.48, 36.2],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_8be3fa717e27eb98898682ec34efd173 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_ce3efb80ffda7eb7886daca0a9cecca8 = $(`<div id="html_ce3efb80ffda7eb7886daca0a9cecca8" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Hatay / Belen</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %3.94 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 23.7°C<br>                 <b>Nem:</b> %81.0<br>                 <b>Rüzgar:</b> 14.8 km/h             </div>         </div>         </div>`)[0];
+                popup_8be3fa717e27eb98898682ec34efd173.setContent(html_ce3efb80ffda7eb7886daca0a9cecca8);
+            
+        
+
+        circle_marker_8e33a2c18c71d1ad50a39ab3e05817f4.bindPopup(popup_8be3fa717e27eb98898682ec34efd173)
+        ;
+
+        
+    
+    
+            var circle_marker_f9432f61c0bb475c33e55db4e4ddc102 = L.circleMarker(
+                [40.07, 29.13],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_72ff0332054f169a26bbb4beccb0bef2 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_341b37e579f678e27d92d323220afb03 = $(`<div id="html_341b37e579f678e27d92d323220afb03" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Bursa / Uludağ</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %8.91 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 22.0°C<br>                 <b>Nem:</b> %55.0<br>                 <b>Rüzgar:</b> 11.2 km/h             </div>         </div>         </div>`)[0];
+                popup_72ff0332054f169a26bbb4beccb0bef2.setContent(html_341b37e579f678e27d92d323220afb03);
+            
+        
+
+        circle_marker_f9432f61c0bb475c33e55db4e4ddc102.bindPopup(popup_72ff0332054f169a26bbb4beccb0bef2)
+        ;
+
+        
+    
+    
+            var circle_marker_8dd2204d87b06e9cbce95b0e094cdaa7 = L.circleMarker(
+                [41.18, 28.98],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_e38df364fe9798cc2be50b94881160e2 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_58f67278b0a2401ff84fbe90a0179b54 = $(`<div id="html_58f67278b0a2401ff84fbe90a0179b54" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">İstanbul / Belgrad Ormanı</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %3.89 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 24.9°C<br>                 <b>Nem:</b> %77.0<br>                 <b>Rüzgar:</b> 13.0 km/h             </div>         </div>         </div>`)[0];
+                popup_e38df364fe9798cc2be50b94881160e2.setContent(html_58f67278b0a2401ff84fbe90a0179b54);
+            
+        
+
+        circle_marker_8dd2204d87b06e9cbce95b0e094cdaa7.bindPopup(popup_e38df364fe9798cc2be50b94881160e2)
+        ;
+
+        
+    
+    
+            var circle_marker_240a2b4b79f942b4c0bad7fcda3703da = L.circleMarker(
+                [40.67, 30.02],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_16e05d36f48d9f6c1c1987be14877673 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_f281e213e74c4644d5d2db3061e5ff0a = $(`<div id="html_f281e213e74c4644d5d2db3061e5ff0a" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Kocaeli / Kartepe</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %3.89 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 23.2°C<br>                 <b>Nem:</b> %71.0<br>                 <b>Rüzgar:</b> 13.0 km/h             </div>         </div>         </div>`)[0];
+                popup_16e05d36f48d9f6c1c1987be14877673.setContent(html_f281e213e74c4644d5d2db3061e5ff0a);
+            
+        
+
+        circle_marker_240a2b4b79f942b4c0bad7fcda3703da.bindPopup(popup_16e05d36f48d9f6c1c1987be14877673)
+        ;
+
+        
+    
+    
+            var circle_marker_8295f24ee6eb072024ab0dc4c4245147 = L.circleMarker(
+                [40.61, 31.28],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_9d59c7f6b569199738d0b782c1368831 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_ef98a90d8bcab34021890808bae8b78f = $(`<div id="html_ef98a90d8bcab34021890808bae8b78f" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Bolu / Abant</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %5.81 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 19.2°C<br>                 <b>Nem:</b> %85.0<br>                 <b>Rüzgar:</b> 7.6 km/h             </div>         </div>         </div>`)[0];
+                popup_9d59c7f6b569199738d0b782c1368831.setContent(html_ef98a90d8bcab34021890808bae8b78f);
+            
+        
+
+        circle_marker_8295f24ee6eb072024ab0dc4c4245147.bindPopup(popup_9d59c7f6b569199738d0b782c1368831)
+        ;
+
+        
+    
+    
+            var circle_marker_6590da0bd1adb2ebfb079a3e127f9403 = L.circleMarker(
+                [41.89, 32.9],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_898efe461f345927820dfb5297dac0fb = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_f2b8128f517231488e8866caec68e3a6 = $(`<div id="html_f2b8128f517231488e8866caec68e3a6" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Kastamonu / Cide</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %2.16 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 24.9°C<br>                 <b>Nem:</b> %88.0<br>                 <b>Rüzgar:</b> 5.2 km/h             </div>         </div>         </div>`)[0];
+                popup_898efe461f345927820dfb5297dac0fb.setContent(html_f2b8128f517231488e8866caec68e3a6);
+            
+        
+
+        circle_marker_6590da0bd1adb2ebfb079a3e127f9403.bindPopup(popup_898efe461f345927820dfb5297dac0fb)
+        ;
+
+        
+    
+    
+            var circle_marker_af79dba3bfdc1dd8582787ba403c4f69 = L.circleMarker(
+                [41.94, 34.58],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_90028a8e6b0db0ade73991a65e6302ab = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_c3b6ca2f1eddccad81f2b2271676feda = $(`<div id="html_c3b6ca2f1eddccad81f2b2271676feda" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Sinop / Ayancık</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %2.1 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 24.6°C<br>                 <b>Nem:</b> %80.0<br>                 <b>Rüzgar:</b> 3.6 km/h             </div>         </div>         </div>`)[0];
+                popup_90028a8e6b0db0ade73991a65e6302ab.setContent(html_c3b6ca2f1eddccad81f2b2271676feda);
+            
+        
+
+        circle_marker_af79dba3bfdc1dd8582787ba403c4f69.bindPopup(popup_90028a8e6b0db0ade73991a65e6302ab)
+        ;
+
+        
+    
+    
+            var circle_marker_e64c21b323e7617240634505f33b3cf0 = L.circleMarker(
+                [40.81, 39.6],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_a37e21c7affd799e14c71cf13583035e = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_6da52f24fcf778a6a4bd128e19270941 = $(`<div id="html_6da52f24fcf778a6a4bd128e19270941" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Trabzon / Maçka</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %2.11 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 22.1°C<br>                 <b>Nem:</b> %87.0<br>                 <b>Rüzgar:</b> 4.7 km/h             </div>         </div>         </div>`)[0];
+                popup_a37e21c7affd799e14c71cf13583035e.setContent(html_6da52f24fcf778a6a4bd128e19270941);
+            
+        
+
+        circle_marker_e64c21b323e7617240634505f33b3cf0.bindPopup(popup_a37e21c7affd799e14c71cf13583035e)
+        ;
+
+        
+    
+    
+            var circle_marker_995b877160e08d111ba21619ea3b31e8 = L.circleMarker(
+                [37.76, 29.27],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_4c6b6075502f7c1048f67cde405f1f89 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_e56c7becbafdac151cbda7cb5e1ce622 = $(`<div id="html_e56c7becbafdac151cbda7cb5e1ce622" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Denizli / Honaz</h4>             <div style="background-color: #a3e635; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %42.58 (DÜŞÜK-ORTA)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 34.5°C<br>                 <b>Nem:</b> %24.0<br>                 <b>Rüzgar:</b> 11.7 km/h             </div>         </div>         </div>`)[0];
+                popup_4c6b6075502f7c1048f67cde405f1f89.setContent(html_e56c7becbafdac151cbda7cb5e1ce622);
+            
+        
+
+        circle_marker_995b877160e08d111ba21619ea3b31e8.bindPopup(popup_4c6b6075502f7c1048f67cde405f1f89)
+        ;
+
+        
+    
+    
+            var circle_marker_4815ba5e3547ae5a16c7f8c920458cb6 = L.circleMarker(
+                [37.87, 30.85],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_800ca1bc8e7ca12ca4374570ae5f28ee = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_b5ed1bd492cab3317e63dbeac59a138c = $(`<div id="html_b5ed1bd492cab3317e63dbeac59a138c" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Isparta / Eğirdir</h4>             <div style="background-color: #a3e635; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %41.32 (DÜŞÜK-ORTA)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 30.9°C<br>                 <b>Nem:</b> %25.0<br>                 <b>Rüzgar:</b> 9.7 km/h             </div>         </div>         </div>`)[0];
+                popup_800ca1bc8e7ca12ca4374570ae5f28ee.setContent(html_b5ed1bd492cab3317e63dbeac59a138c);
+            
+        
+
+        circle_marker_4815ba5e3547ae5a16c7f8c920458cb6.bindPopup(popup_800ca1bc8e7ca12ca4374570ae5f28ee)
+        ;
+
+        
+    
+    
+            var circle_marker_cdac3dc9d5f60b7f34f8f026788d092e = L.circleMarker(
+                [40.47, 32.65],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_26b3364c58e72ee1d6d972d1b4199166 = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_79b6499bd598979faf54442e07412d01 = $(`<div id="html_79b6499bd598979faf54442e07412d01" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Ankara / Kızılcahamam</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %39.57 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 27.3°C<br>                 <b>Nem:</b> %40.0<br>                 <b>Rüzgar:</b> 15.0 km/h             </div>         </div>         </div>`)[0];
+                popup_26b3364c58e72ee1d6d972d1b4199166.setContent(html_79b6499bd598979faf54442e07412d01);
+            
+        
+
+        circle_marker_cdac3dc9d5f60b7f34f8f026788d092e.bindPopup(popup_26b3364c58e72ee1d6d972d1b4199166)
+        ;
+
+        
+    
+    
+            var circle_marker_71c4389a243874824cd85b30d31d9e81 = L.circleMarker(
+                [39.1, 39.54],
+                {"bubblingMouseEvents": true, "color": "transparent", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "transparent", "fillOpacity": 0.01, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 14, "stroke": true, "weight": 3}
+            ).addTo(map_93d399831d80106cd9938d7e5fd0359b);
+        
+    
+        var popup_fddeb9bf2573657977898223c3d2c40e = L.popup({
+  "maxWidth": 220,
+});
+
+        
+            
+                var html_8265b4807fde63f102762cde5e3bb611 = $(`<div id="html_8265b4807fde63f102762cde5e3bb611" style="width: 100.0%; height: 100.0%;">         <div style="font-family: Arial, sans-serif; width: 180px; padding: 2px;">             <h4 style="margin: 0 0 5px 0; color: #333; font-size: 14px;">Dersim / Tunceli</h4>             <div style="background-color: #2ecc71; color: white; padding: 4px 8px; border-radius: 4px; font-weight: bold; font-size: 13px; text-align: center; margin-bottom: 8px;">                 Risk: %4.67 (DÜŞÜK)             </div>             <div style="font-size: 12px; color: #555; line-height: 1.4;">                 <b>Sıcaklık:</b> 33.0°C<br>                 <b>Nem:</b> %13.0<br>                 <b>Rüzgar:</b> 9.5 km/h             </div>         </div>         </div>`)[0];
+                popup_fddeb9bf2573657977898223c3d2c40e.setContent(html_8265b4807fde63f102762cde5e3bb611);
+            
+        
+
+        circle_marker_71c4389a243874824cd85b30d31d9e81.bindPopup(popup_fddeb9bf2573657977898223c3d2c40e)
+        ;
+
+        
+    
+</script>
+</html>
