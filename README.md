@@ -1,7 +1,9 @@
 # Wildfire Risk Prediction Model (XGBoost)
 
-This repository contains the Machine Learning model designed to predict wildfire risk probabilities. The model processes real-time and historical meteorological data, topography, vegetation indices, and active fire data to generate a wildfire risk score ranging from 0% to 100%. 
-This model is used in an early fire detection system. Link to the main project repository will be added once the project is finalized.
+This repository contains the Machine Learning model designed to predict wildfire risk probabilities. The model processes real-time and historical meteorological data, topography, vegetation indices, and active fire data to generate a wildfire risk score ranging from 0% to 100%.
+
+This model is used in an early fire detection system. A link to the main project repository will be added once the project is finalized.
+
 ---
 
 ## Model Summary
@@ -66,7 +68,11 @@ The model requires 27 specific parameters to compute the risk score:
 
 ## Risk Thresholds
 
-- 0% - 39%: Low Risk (Hidden from dynamic grid rendering to reduce visual clutter)
+- 0% - 39%: Low Risk
 - 40% - 60%: Medium Risk
 - 61% - 85%: High Risk
 - 86% - 100%: Critical Risk (Rendered and highlighted directly on the map)
+
+## Note on the Map
+
+The map (turkey_map.html) is for testing purposes only. It was created to visualize fire risk detection during development. The committed version is not up to date. To generate the latest version, please run the "map.py" Python script.
