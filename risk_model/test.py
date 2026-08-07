@@ -1,4 +1,4 @@
-from fire_risk.analyze import analyze_production_fire_risk, print_fire_risk_report
+from analyze import analyze_production_fire_risk, print_fire_risk_report
 
 TEST_LOCATIONS = [
     ("Turkey / Mugla (Marmaris Conifer Forest)", 36.8550, 28.2742),
