@@ -1,0 +1,32 @@
+# --- Web Framework & Server ---
+fastapi
+uvicorn[standard]
+pydantic
+apscheduler
+python-dotenv
+requests
+
+# --- Database & Geospatial ---
+sqlalchemy
+geoalchemy2
+psycopg2-binary
+shapely
+
+# --- Data Processing & Machine Learning (Risk Model) ---
+numpy
+pandas
+scikit-learn
+xgboost
+joblib
+
+# --- Computer Vision & Object Detection (YOLO) ---
+torch
+torchvision
+ultralytics
+opencv-python-headless
+
+# --- LLM, LoRA & Model Quantization (Spread / Dispatcher) ---
+transformers
+peft
+accelerate
+bitsandbytes

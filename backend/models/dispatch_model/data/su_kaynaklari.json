@@ -1,0 +1,1991 @@
+[
+  {
+    "id": "SK-001",
+    "isim": "Oymapınar Baraj Gölü - 3. İskele ve Su Alım Noktası",
+    "il": "Antalya",
+    "ilce": "Manavgat",
+    "bolge": "Akdeniz Orman Yangın Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 36.881,
+    "koordinat_boylam": 31.46,
+    "gps_format": "[36.881°N, 31.460°E]",
+    "kapasite": "300 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Su Atar Helikopter",
+      "Arazöz İkmali"
+    ],
+    "notlar": "Manavgat taç yangınlarında amfibik uçakların scoop (su ikmal) yaptığı temel kaynak."
+  },
+  {
+    "id": "SK-002",
+    "isim": "YH-14 Oymapınar Orman Yangın Havuzu",
+    "il": "Antalya",
+    "ilce": "Manavgat",
+    "bolge": "Karavca Köyü Sırtı",
+    "tip": "OGM Yangın Havuzu",
+    "koordinat_enlem": 36.885,
+    "koordinat_boylam": 31.468,
+    "gps_format": "[36.885°N, 31.468°E]",
+    "kapasite": "400 Ton (Betonarme Havuz)",
+    "uygun_araclar": [
+      "Helikopter Bambi Bucket",
+      "Arazöz"
+    ],
+    "notlar": "Karavca ve Oymapınar köy savunmalarında helikopterlerin hızlı periyot su aldığı nokta."
+  },
+  {
+    "id": "SK-003",
+    "isim": "Manavgat Şelalesi ve Nehir Su Alım Sahası",
+    "il": "Antalya",
+    "ilce": "Manavgat",
+    "bolge": "Manavgat Çayı Vadisi",
+    "tip": "Akarsu",
+    "koordinat_enlem": 36.812,
+    "koordinat_boylam": 31.454,
+    "gps_format": "[36.812°N, 31.454°E]",
+    "kapasite": "Sürekli Akış",
+    "uygun_araclar": [
+      "Arazöz",
+      "Su Tankeri"
+    ],
+    "notlar": "Karayolu bağlantılı arazöz ve ikmal tankerleri için su alım rampası mevcuttur."
+  },
+  {
+    "id": "SK-004",
+    "isim": "Manavgat Ulupınar Göleti",
+    "il": "Antalya",
+    "ilce": "Manavgat",
+    "bolge": "Ulupınar Orman Sektörü",
+    "tip": "Gölet",
+    "koordinat_enlem": 36.92,
+    "koordinat_boylam": 31.55,
+    "gps_format": "[36.920°N, 31.550°E]",
+    "kapasite": "500.000 m³",
+    "uygun_araclar": [
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Akseki yönü sarp vadi yangınları için gölet ikmali."
+  },
+  {
+    "id": "SK-005",
+    "isim": "Alanya Dim Baraj Gölü",
+    "il": "Antalya",
+    "ilce": "Alanya",
+    "bolge": "Dim Çayı Vadisi",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 36.568,
+    "koordinat_boylam": 32.112,
+    "gps_format": "[36.568°N, 32.112°E]",
+    "kapasite": "250 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Alanya doğu sahil ormanları ve Toros yamaçları için ana baraj kaynağı."
+  },
+  {
+    "id": "SK-006",
+    "isim": "Alanya Alara Çayı Su Alım Rampası",
+    "il": "Antalya",
+    "ilce": "Alanya",
+    "bolge": "Alara Vadisi",
+    "tip": "Akarsu",
+    "koordinat_enlem": 36.685,
+    "koordinat_boylam": 31.78,
+    "gps_format": "[36.685°N, 31.780°E]",
+    "kapasite": "Sürekli Akış",
+    "uygun_araclar": [
+      "Arazöz",
+      "Su Tankeri",
+      "Helikopter"
+    ],
+    "notlar": "Gündoğmuş ve Alara vadisi yangınları için akarsu ikmal sahası."
+  },
+  {
+    "id": "SK-007",
+    "isim": "Kemer Göynük Sahil Koyu İkmal Noktası",
+    "il": "Antalya",
+    "ilce": "Kemer",
+    "bolge": "Beydağları Sahil Milli Parkı",
+    "tip": "Deniz",
+    "koordinat_enlem": 36.635,
+    "koordinat_boylam": 30.585,
+    "gps_format": "[36.635°N, 30.585°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Göynük Kanyonu ve Kemer oteller bölgesi yangınları için deniz ikmal koyu."
+  },
+  {
+    "id": "SK-008",
+    "isim": "Kemer Çamyuva Sahil Deniz Alım Sahası",
+    "il": "Antalya",
+    "ilce": "Kemer",
+    "bolge": "Çamyuva - Tekirova Sahil Hattı",
+    "tip": "Deniz",
+    "koordinat_enlem": 36.545,
+    "koordinat_boylam": 30.565,
+    "gps_format": "[36.545°N, 30.565°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Phaselis antik kenti ve Tekirova ormanları için dalga kırımı düşük deniz ikmali."
+  },
+  {
+    "id": "SK-009",
+    "isim": "YH-22 Çavdır - Patara Yangın Havuzu",
+    "il": "Antalya",
+    "ilce": "Kaş",
+    "bolge": "Kaş - Kalkan - Patara Orman Hattı",
+    "tip": "OGM Yangın Havuzu",
+    "koordinat_enlem": 36.355,
+    "koordinat_boylam": 29.385,
+    "gps_format": "[36.355°N, 29.385°E]",
+    "kapasite": "400 Ton",
+    "uygun_araclar": [
+      "Helikopter Bambi Bucket",
+      "Arazöz"
+    ],
+    "notlar": "Sarp kanyon vadilerinde arazöz ve helikopterlerin kullandığı stratejik havuz."
+  },
+  {
+    "id": "SK-010",
+    "isim": "Kaş Kalkan Körfezi Deniz Alım Sahası",
+    "il": "Antalya",
+    "ilce": "Kaş",
+    "bolge": "Kalkan - Kaputaş Sahil Sektörü",
+    "tip": "Deniz / Körfez",
+    "koordinat_enlem": 36.265,
+    "koordinat_boylam": 29.415,
+    "gps_format": "[36.265°N, 29.415°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Kalkan kıyı ve çam ormanı yangınları için deniz ikmal hattı."
+  },
+  {
+    "id": "SK-011",
+    "isim": "Gazipaşa Bıçakçı Yangın Havuzu YH-19",
+    "il": "Antalya",
+    "ilce": "Gazipaşa",
+    "bolge": "Toros Yamaçları",
+    "tip": "OGM Yangın Havuzu",
+    "koordinat_enlem": 36.38,
+    "koordinat_boylam": 32.34,
+    "gps_format": "[36.380°N, 32.340°E]",
+    "kapasite": "500 Ton",
+    "uygun_araclar": [
+      "Helikopter Bambi Bucket"
+    ],
+    "notlar": "Anamur-Gazipaşa sınır hattındaki dağlık yangınlara müdahale havuzu."
+  },
+  {
+    "id": "SK-012",
+    "isim": "Karacaören Baraj Gölü - Bucak / Antalya Sınırı",
+    "il": "Antalya",
+    "ilce": "Aksu / Burdur Bucak",
+    "bolge": "Karacaören Baraj Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.33,
+    "koordinat_boylam": 30.835,
+    "gps_format": "[37.330°N, 30.835°E]",
+    "kapasite": "1 Milyar m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Antalya kuzey ormanları ve Isparta/Burdur sınırı için dev baraj kaynağı."
+  },
+  {
+    "id": "SK-013",
+    "isim": "Marmaris Körfezi - İçmeler Sahili Su Alım Koyu",
+    "il": "Muğla",
+    "ilce": "Marmaris",
+    "bolge": "İçmeler Sahil Hattı",
+    "tip": "Deniz / Körfez",
+    "koordinat_enlem": 36.799,
+    "koordinat_boylam": 28.238,
+    "gps_format": "[36.799°N, 28.238°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Marmaris İçmeler ve Turunç yangınlarında CL-415 ve AT-802 uçaklarının ana ikmal koyu."
+  },
+  {
+    "id": "SK-014",
+    "isim": "YH-08 Turunç Sırtı Orman Yangın Havuzu",
+    "il": "Muğla",
+    "ilce": "Marmaris",
+    "bolge": "Turunç - Amos Sırtları",
+    "tip": "OGM Yangın Havuzu",
+    "koordinat_enlem": 36.772,
+    "koordinat_boylam": 28.245,
+    "gps_format": "[36.772°N, 28.245°E]",
+    "kapasite": "500 Ton",
+    "uygun_araclar": [
+      "Helikopter Bambi Bucket"
+    ],
+    "notlar": "Dağlık kızılçam tepe hattında helikopter müdahalesi için kritik havuz."
+  },
+  {
+    "id": "SK-015",
+    "isim": "İçmeler Göleti ve Sel Kapanı",
+    "il": "Muğla",
+    "ilce": "Marmaris",
+    "bolge": "İçmeler Vadisi",
+    "tip": "Gölet",
+    "koordinat_enlem": 36.81,
+    "koordinat_boylam": 28.215,
+    "gps_format": "[36.810°N, 28.215°E]",
+    "kapasite": "120.000 m³",
+    "uygun_araclar": [
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Oteller bölgesine 1.5 km mesafede tatlı su kaynağı."
+  },
+  {
+    "id": "SK-016",
+    "isim": "Marmaris Hisarönü Körfezi - Bördübet Alım Koyu",
+    "il": "Muğla",
+    "ilce": "Marmaris",
+    "bolge": "Hisarönü - Bördübet Sektörü",
+    "tip": "Deniz / Körfez",
+    "koordinat_enlem": 36.79,
+    "koordinat_boylam": 28.05,
+    "gps_format": "[36.790°N, 28.050°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Bördübet ve Değirmenyanı yangınlarında korunaklı deniz su alımı."
+  },
+  {
+    "id": "SK-017",
+    "isim": "Bodrum Güvercinlik Körfezi Su Alım Noktası",
+    "il": "Muğla",
+    "ilce": "Bodrum",
+    "bolge": "Güvercinlik - Pina Yarımadası",
+    "tip": "Deniz / Koy",
+    "koordinat_enlem": 37.135,
+    "koordinat_boylam": 27.575,
+    "gps_format": "[37.135°N, 27.575°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Bodrum oteller bölgesi ve Pina yarımadası yangınlarında en yakın su ikmal koyu."
+  },
+  {
+    "id": "SK-018",
+    "isim": "Bodrum Torba Koyu Deniz Su Alım Sahası",
+    "il": "Muğla",
+    "ilce": "Bodrum",
+    "bolge": "Torba - Gölköy Sektörü",
+    "tip": "Deniz / Koy",
+    "koordinat_enlem": 37.088,
+    "koordinat_boylam": 27.468,
+    "gps_format": "[37.088°N, 27.468°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Torba oteller ve Demirbükü yangınları için deniz ikmali."
+  },
+  {
+    "id": "SK-019",
+    "isim": "Mumcular Baraj Gölü",
+    "il": "Muğla",
+    "ilce": "Bodrum",
+    "bolge": "Mumcular - Mazı Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.085,
+    "koordinat_boylam": 27.672,
+    "gps_format": "[37.085°N, 27.672°E]",
+    "kapasite": "18 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Milas - Bodrum sınır hattındaki kızılçam yangınlarında tatlı su ikmal noktası."
+  },
+  {
+    "id": "SK-020",
+    "isim": "Geyik Barajı ve Yangın Su Alım Rampası",
+    "il": "Muğla",
+    "ilce": "Milas",
+    "bolge": "Yeniköy Termik Santrali Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.285,
+    "koordinat_boylam": 27.78,
+    "gps_format": "[37.285°N, 27.780°E]",
+    "kapasite": "40 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Yeniköy ve Kemerköy termik santrallerini tehdit eden orman yangınlarında birincil baraj."
+  },
+  {
+    "id": "SK-021",
+    "isim": "Akgedik Baraj Gölü",
+    "il": "Muğla",
+    "ilce": "Milas",
+    "bolge": "Milas Kuzey Orman Hattı",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.38,
+    "koordinat_boylam": 27.82,
+    "gps_format": "[37.380°N, 27.820°E]",
+    "kapasite": "30 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Beçin ve Bafa Gölü çevresi orman yangınları için baraj ikmal sahası."
+  },
+  {
+    "id": "SK-022",
+    "isim": "Köyceğiz Gölü Kuzey Su Alım Sahası",
+    "il": "Muğla",
+    "ilce": "Köyceğiz",
+    "bolge": "Köyceğiz - Sandras Dağı Sektörü",
+    "tip": "Tatlı Su Gölü",
+    "koordinat_enlem": 36.955,
+    "koordinat_boylam": 28.685,
+    "gps_format": "[36.955°N, 28.685°E]",
+    "kapasite": "Doğal Gölü",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Sığla ormanları ve Sandras dağı yangınlarında rüzgardan korunaklı su alma hattı."
+  },
+  {
+    "id": "SK-023",
+    "isim": "Fethiye Ölüdeniz / Belcekız Körfezi",
+    "il": "Muğla",
+    "ilce": "Fethiye",
+    "bolge": "Babadağ - Ovacık Sektörü",
+    "tip": "Deniz / Körfez",
+    "koordinat_enlem": 36.548,
+    "koordinat_boylam": 29.122,
+    "gps_format": "[36.548°N, 29.122°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Babadağ sarp yamaç yangınlarında amfibik uçakların en yakın deniz su alımı."
+  },
+  {
+    "id": "SK-024",
+    "isim": "Datça Hisarönü Körfezi Su İkmal Alanı",
+    "il": "Muğla",
+    "ilce": "Datça",
+    "bolge": "Hisarönü - Bördübet Orman Sektörü",
+    "tip": "Deniz / Körfez",
+    "koordinat_enlem": 36.755,
+    "koordinat_boylam": 28.085,
+    "gps_format": "[36.755°N, 28.085°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Bördübet ve Datça yarımadası yangınlarında uçakların güvenli su aldığı körfez."
+  },
+  {
+    "id": "SK-025",
+    "isim": "Dalaman Kükürtlü Yangın Havuzu YH-11",
+    "il": "Muğla",
+    "ilce": "Dalaman",
+    "bolge": "Dalaman Havalimanı Çevresi",
+    "tip": "OGM Yangın Havuzu",
+    "koordinat_enlem": 36.78,
+    "koordinat_boylam": 28.81,
+    "gps_format": "[36.780°N, 28.810°E]",
+    "kapasite": "500 Ton",
+    "uygun_araclar": [
+      "Helikopter Bambi Bucket",
+      "Arazöz"
+    ],
+    "notlar": "Dalaman havalimanı ve Göcek tüneli üstü yangınları için OGM havuzu."
+  },
+  {
+    "id": "SK-026",
+    "isim": "Gezende Baraj Gölü",
+    "il": "Mersin",
+    "ilce": "Gülnar / Mut",
+    "bolge": "Göksu Vadisi Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 36.525,
+    "koordinat_boylam": 33.155,
+    "gps_format": "[36.525°N, 33.155°E]",
+    "kapasite": "90 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Mersin Gülnar - Aydıncık orman yangınları için Göksu nehri üzeri baraj kaynağı."
+  },
+  {
+    "id": "SK-027",
+    "isim": "Mersin Anamur Dragon Çayı İkmal Noktası",
+    "il": "Mersin",
+    "ilce": "Anamur",
+    "bolge": "Anamur Çamlık Sektörü",
+    "tip": "Akarsu",
+    "koordinat_enlem": 36.085,
+    "koordinat_boylam": 32.865,
+    "gps_format": "[36.085°N, 32.865°E]",
+    "kapasite": "Sürekli Akış",
+    "uygun_araclar": [
+      "Arazöz",
+      "Helikopter"
+    ],
+    "notlar": "Anamur sahil ve Toros yamaç yangınları için akarsu alımı."
+  },
+  {
+    "id": "SK-028",
+    "isim": "Silifke Berdan Barajı",
+    "il": "Mersin",
+    "ilce": "Tarsus / Silifke",
+    "bolge": "Tarsus - Çamlıyayla Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 36.965,
+    "koordinat_boylam": 34.885,
+    "gps_format": "[36.965°N, 34.885°E]",
+    "kapasite": "160 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Tarsus ve Çamlıyayla kızılçam yangınları için baraj alımı."
+  },
+  {
+    "id": "SK-029",
+    "isim": "Adana Kozan Yedigöze Barajı",
+    "il": "Adana",
+    "ilce": "Kozan / Aladağ",
+    "bolge": "Seyhan ve Çukurova Orman Hattı",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.545,
+    "koordinat_boylam": 35.535,
+    "gps_format": "[37.545°N, 35.535°E]",
+    "kapasite": "600 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Kozan ve Aladağ büyük orman yangınları için dev su rezervi."
+  },
+  {
+    "id": "SK-030",
+    "isim": "Adana Seyhan Baraj Gölü",
+    "il": "Adana",
+    "ilce": "Çukurova",
+    "bolge": "Çukurova Kuzey Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.045,
+    "koordinat_boylam": 35.315,
+    "gps_format": "[37.045°N, 35.315°E]",
+    "kapasite": "1.2 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Adana çevresi orman ve makilik yangınları ana ikmal barajı."
+  },
+  {
+    "id": "SK-031",
+    "isim": "Hatay Belen YH-05 Yangın Havuzu",
+    "il": "Hatay",
+    "ilce": "Belen",
+    "bolge": "Belen Geçidi ve Amanos Dağları",
+    "tip": "OGM Yangın Havuzu",
+    "koordinat_enlem": 36.485,
+    "koordinat_boylam": 36.215,
+    "gps_format": "[36.485°N, 36.215°E]",
+    "kapasite": "450 Ton",
+    "uygun_araclar": [
+      "Helikopter Bambi Bucket",
+      "Arazöz"
+    ],
+    "notlar": "Amanos dağları rüzgarlı geçit yangınlarında helikopterlerin su aldığı nokta."
+  },
+  {
+    "id": "SK-032",
+    "isim": "Hatay Arsuz Körfezi Deniz Su Alım Alanı",
+    "il": "Hatay",
+    "ilce": "Arsuz",
+    "bolge": "Amanos Batı Sahil Sektörü",
+    "tip": "Deniz",
+    "koordinat_enlem": 36.415,
+    "koordinat_boylam": 35.885,
+    "gps_format": "[36.415°N, 35.885°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Arsuz ve İskenderun orman yangınlarında uçakların güvenli körfez alımı."
+  },
+  {
+    "id": "SK-033",
+    "isim": "Hatay Yarseli Baraj Gölü",
+    "il": "Hatay",
+    "ilce": "Altınözü",
+    "bolge": "Amik Ovası ve Sınır Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 36.145,
+    "koordinat_boylam": 36.315,
+    "gps_format": "[36.145°N, 36.315°E]",
+    "kapasite": "55 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Hatay güney sınırı orman ve zeytinlik yangınları su kaynağı."
+  },
+  {
+    "id": "SK-034",
+    "isim": "Osmaniye Aslantaş Baraj Gölü",
+    "il": "Osmaniye",
+    "ilce": "Kadirli / Düziçi",
+    "bolge": "Ceyhan Havzası Orman Hattı",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.245,
+    "koordinat_boylam": 36.285,
+    "gps_format": "[37.245°N, 36.285°E]",
+    "kapasite": "1.1 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Osmaniye ve Kadirli orman yangınları için birincil büyük baraj kaynağı."
+  },
+  {
+    "id": "SK-035",
+    "isim": "Kahramanmaraş Menzelet Baraj Gölü",
+    "il": "Kahramanmaraş",
+    "ilce": "Onikişubat",
+    "bolge": "Ahırdağı ve Andırın Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.665,
+    "koordinat_boylam": 36.845,
+    "gps_format": "[37.665°N, 36.845°E]",
+    "kapasite": "2 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Kahramanmaraş ve Andırın orman hattı yangınları için tatlı su rezervi."
+  },
+  {
+    "id": "SK-036",
+    "isim": "Kahramanmaraş Sır Baraj Gölü",
+    "il": "Kahramanmaraş",
+    "ilce": "Onikişubat",
+    "bolge": "Ceyhan Vadisi Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.555,
+    "koordinat_boylam": 36.715,
+    "gps_format": "[37.555°N, 36.715°E]",
+    "kapasite": "1.1 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Ahırdağı güney yamacı yangınlarında amfibik uçak su alımı."
+  },
+  {
+    "id": "SK-037",
+    "isim": "Burdur Karacaören-2 Baraj Gölü",
+    "il": "Burdur",
+    "ilce": "Bucak",
+    "bolge": "Bucak Kızılçam Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.285,
+    "koordinat_boylam": 30.815,
+    "gps_format": "[37.285°N, 30.815°E]",
+    "kapasite": "48 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Burdur Bucak ve Isparta sınırı yangınları için stratejik su kaynağı."
+  },
+  {
+    "id": "SK-038",
+    "isim": "Isparta Eğirdir Gölü Kuzey İkmal Noktası",
+    "il": "Isparta",
+    "ilce": "Eğirdir",
+    "bolge": "Göller Yöresi Orman Sektörü",
+    "tip": "Doğal Göl",
+    "koordinat_enlem": 37.915,
+    "koordinat_boylam": 30.885,
+    "gps_format": "[37.915°N, 30.885°E]",
+    "kapasite": "Doğal Gölü (4 Bilyon m³)",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Isparta çam ormanları ve Sütçüler yangınlarında büyük tatlı su kaynağı."
+  },
+  {
+    "id": "SK-039",
+    "isim": "Ürkmez Baraj Gölü",
+    "il": "İzmir",
+    "ilce": "Seferihisar",
+    "bolge": "Seferihisar - Gümüldür Orman Hattı",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.075,
+    "koordinat_boylam": 26.965,
+    "gps_format": "[38.075°N, 26.965°E]",
+    "kapasite": "8 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "İzmir güney sahil orman yangınları için kritik baraj kaynağı."
+  },
+  {
+    "id": "SK-040",
+    "isim": "Alaçatı Kutlu Aktaş Baraj Gölü",
+    "il": "İzmir",
+    "ilce": "Çeşme",
+    "bolge": "Çeşme - Alaçatı Makilik ve Orman Alanı",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.315,
+    "koordinat_boylam": 26.415,
+    "gps_format": "[38.315°N, 26.415°E]",
+    "kapasite": "16 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Çeşme yarımadası rüzgarlı yangınlarda tatlı su alma sahası."
+  },
+  {
+    "id": "SK-041",
+    "isim": "İzmir Tahtalı Baraj Gölü",
+    "il": "İzmir",
+    "ilce": "Menderes",
+    "bolge": "Menderes - Gümüldür Havzası",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.155,
+    "koordinat_boylam": 27.085,
+    "gps_format": "[38.155°N, 27.085°E]",
+    "kapasite": "300 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "İzmir çevresi büyük orman yangınlarında en kapasiteli su ikmal noktası."
+  },
+  {
+    "id": "SK-042",
+    "isim": "Foça Eski Foça Körfezi Deniz Su Alımı",
+    "il": "İzmir",
+    "ilce": "Foça",
+    "bolge": "Foça - Aliağa Orman Sektörü",
+    "tip": "Deniz",
+    "koordinat_enlem": 38.675,
+    "koordinat_boylam": 26.755,
+    "gps_format": "[38.675°N, 26.755°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Aliağa petrokimya ve Foça orman yangınlarında uçak deniz ikmali."
+  },
+  {
+    "id": "SK-043",
+    "isim": "Kemalpaşa Nif Dağı YH-03 Yangın Havuzu",
+    "il": "İzmir",
+    "ilce": "Kemalpaşa",
+    "bolge": "Nif Dağı - Spil Dağı Hattı",
+    "tip": "OGM Yangın Havuzu",
+    "koordinat_enlem": 38.435,
+    "koordinat_boylam": 27.415,
+    "gps_format": "[38.435°N, 27.415°E]",
+    "kapasite": "500 Ton",
+    "uygun_araclar": [
+      "Helikopter Bambi Bucket",
+      "Arazöz"
+    ],
+    "notlar": "Spil Dağı ve Kemalpaşa çam ormanı yangınları için yüksek rakım havuzu."
+  },
+  {
+    "id": "SK-044",
+    "isim": "Ödemiş Bademli Baraj Gölü",
+    "il": "İzmir",
+    "ilce": "Ödemiş",
+    "bolge": "Bozdağlar Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.185,
+    "koordinat_boylam": 27.985,
+    "gps_format": "[38.185°N, 27.985°E]",
+    "kapasite": "14 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Bozdağlar ve Ödemiş yayla ormanları için tatlı su alımı."
+  },
+  {
+    "id": "SK-045",
+    "isim": "Bergama Yuntdağı Yangın Göleti",
+    "il": "İzmir",
+    "ilce": "Bergama",
+    "bolge": "Kozak Yaylası Fıstıkçamı Sektörü",
+    "tip": "Gölet",
+    "koordinat_enlem": 39.145,
+    "koordinat_boylam": 27.185,
+    "gps_format": "[39.145°N, 27.185°E]",
+    "kapasite": "700.000 m³",
+    "uygun_araclar": [
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Kozak yaylası dünyaca ünlü fıstıkçamı ormanlarını koruma göleti."
+  },
+  {
+    "id": "SK-046",
+    "isim": "Aydın Kemer Baraj Gölü",
+    "il": "Aydın",
+    "ilce": "Bozdoğan",
+    "bolge": "Akçay Vadisi Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.545,
+    "koordinat_boylam": 28.325,
+    "gps_format": "[37.545°N, 28.325°E]",
+    "kapasite": "350 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Aydın ve Karacasu çam ormanları için stratejik baraj."
+  },
+  {
+    "id": "SK-047",
+    "isim": "Aydın Kuşadası Dilek Yarımadası Deniz Alım Koyu",
+    "il": "Aydın",
+    "ilce": "Kuşadası / Söke",
+    "bolge": "Dilek Yarımadası Milli Parkı",
+    "tip": "Deniz / Koy",
+    "koordinat_enlem": 37.685,
+    "koordinat_boylam": 27.185,
+    "gps_format": "[37.685°N, 27.185°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Milli Park alanı içindeki orman yangınlarına anlık deniz ikmali."
+  },
+  {
+    "id": "SK-048",
+    "isim": "Aydın Çine Adnan Menderes Barajı",
+    "il": "Aydın",
+    "ilce": "Çine",
+    "bolge": "Çine Çayı Orman Vadisi",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.485,
+    "koordinat_boylam": 28.085,
+    "gps_format": "[37.485°N, 28.085°E]",
+    "kapasite": "350 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Çine ve Muğla Yatağan sınırı makilik-çamlık yangınları barajı."
+  },
+  {
+    "id": "SK-049",
+    "isim": "Manisa Demirköprü Baraj Gölü",
+    "il": "Manisa",
+    "ilce": "Salihli / Köprübaşı",
+    "bolge": "Gediz Havzası Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.625,
+    "koordinat_boylam": 28.345,
+    "gps_format": "[38.625°N, 28.345°E]",
+    "kapasite": "1 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Manisa Demirci ve Akhisar bölgesi orman yangınları için ana baraj."
+  },
+  {
+    "id": "SK-050",
+    "isim": "Manisa Gördes Baraj Gölü",
+    "il": "Manisa",
+    "ilce": "Gördes",
+    "bolge": "Gördes - Demirci Çam Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.915,
+    "koordinat_boylam": 28.285,
+    "gps_format": "[38.915°N, 28.285°E]",
+    "kapasite": "450 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Manisa kuzey ilçeleri ve Balıkesir sınırı orman yangınları su kaynağı."
+  },
+  {
+    "id": "SK-051",
+    "isim": "Denizli Adıgüzel Baraj Gölü",
+    "il": "Denizli",
+    "ilce": "Güney / Buldan",
+    "bolge": "Büyük Menderes Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.155,
+    "koordinat_boylam": 29.115,
+    "gps_format": "[38.155°N, 29.115°E]",
+    "kapasite": "1 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Denizli Buldan ve Uşak sınırı orman yangınlarında uçak ikmal noktası."
+  },
+  {
+    "id": "SK-052",
+    "isim": "Denizli Cindere Baraj Gölü",
+    "il": "Denizli",
+    "ilce": "Buldan",
+    "bolge": "Cindere Kanyonu Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.085,
+    "koordinat_boylam": 29.015,
+    "gps_format": "[38.085°N, 29.015°E]",
+    "kapasite": "84 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Buldan kanyon ve çam ormanı yangınları hızlı ikmal noktası."
+  },
+  {
+    "id": "SK-053",
+    "isim": "Kütahya Enne Baraj Gölü",
+    "il": "Kütahya",
+    "ilce": "Merkez / Tavşanlı",
+    "bolge": "Kütahya Çam Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 39.435,
+    "koordinat_boylam": 29.885,
+    "gps_format": "[39.435°N, 29.885°E]",
+    "kapasite": "10 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Domaniç ve Tavşanlı sarıçam/kızılçam yangınlarında ana baraj."
+  },
+  {
+    "id": "SK-054",
+    "isim": "Kütahya Kayaboğazı Baraj Gölü",
+    "il": "Kütahya",
+    "ilce": "Tavşanlı",
+    "bolge": "Tavşanlı - Domaniç Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 39.585,
+    "koordinat_boylam": 29.515,
+    "gps_format": "[39.585°N, 29.515°E]",
+    "kapasite": "38 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Tavşanlı ve Domaniç dağlık orman hattına müdahale barajı."
+  },
+  {
+    "id": "SK-055",
+    "isim": "Uşak Banaz Baltalı Göleti",
+    "il": "Uşak",
+    "ilce": "Banaz",
+    "bolge": "Banaz Çam Ormanları",
+    "tip": "Gölet",
+    "koordinat_enlem": 38.745,
+    "koordinat_boylam": 29.785,
+    "gps_format": "[38.745°N, 29.785°E]",
+    "kapasite": "2 Milyon m³",
+    "uygun_araclar": [
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Uşak Banaz ve Murat Dağı çam orman yangınları helikopter ikmali."
+  },
+  {
+    "id": "SK-056",
+    "isim": "Afyonkarahisar Selevir Baraj Gölü",
+    "il": "Afyonkarahisar",
+    "ilce": "Şuhut",
+    "bolge": "Kumalar Dağı Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.485,
+    "koordinat_boylam": 30.415,
+    "gps_format": "[38.485°N, 30.415°E]",
+    "kapasite": "63 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Afyon güney ağaçlandırma ve çamlık sahaları su kaynağı."
+  },
+  {
+    "id": "SK-057",
+    "isim": "Kabatepe Sahili - Ege Denizi Su Alım Alanı",
+    "il": "Çanakkale",
+    "ilce": "Gelibolu",
+    "bolge": "Gelibolu Tarihi Milli Park Sahili",
+    "tip": "Deniz",
+    "koordinat_enlem": 40.211,
+    "koordinat_boylam": 26.281,
+    "gps_format": "[40.211°N, 26.281°E]",
+    "kapasite": "Sınırsız (Deniz Suyu)",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Kabatepe ve Alçıtepe orman yangınlarında uçakların dalga kırımı düşük ikmal rotası."
+  },
+  {
+    "id": "SK-058",
+    "isim": "Çanakkale Boğazı - Kilitbahir İkmal Hattı",
+    "il": "Çanakkale",
+    "ilce": "Eceabat / Gelibolu",
+    "bolge": "Çanakkale Boğazı Orta Sektör",
+    "tip": "Deniz / Boğaz",
+    "koordinat_enlem": 40.146,
+    "koordinat_boylam": 26.378,
+    "gps_format": "[40.146°N, 26.378°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak"
+    ],
+    "notlar": "Tarihi Şehitlikler yangınında boğaz deniz trafiği durdurularak su ikmali yapılır."
+  },
+  {
+    "id": "SK-059",
+    "isim": "Bayramiç Baraj Gölü",
+    "il": "Çanakkale",
+    "ilce": "Bayramiç",
+    "bolge": "Kazdağları Kuzey Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 39.815,
+    "koordinat_boylam": 26.685,
+    "gps_format": "[39.815°N, 26.685°E]",
+    "kapasite": "86 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Kazdağları milli parkı yangınlarında tatlı su ikmali yapılan stratejik baraj."
+  },
+  {
+    "id": "SK-060",
+    "isim": "Atikhisar Baraj Gölü",
+    "il": "Çanakkale",
+    "ilce": "Merkez",
+    "bolge": "Çanakkale Merkez Orman Hattı",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.085,
+    "koordinat_boylam": 26.485,
+    "gps_format": "[40.085°N, 26.485°E]",
+    "kapasite": "54 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Çanakkale merkez ve Kepez yangınlarında en yakın baraj."
+  },
+  {
+    "id": "SK-061",
+    "isim": "Çanakkale Ayvacık Tuzla Çayı İkmal Noktası",
+    "il": "Çanakkale",
+    "ilce": "Ayvacık",
+    "bolge": "Assos - Kazdağları Batı Sektörü",
+    "tip": "Akarsu / Gölet",
+    "koordinat_enlem": 39.585,
+    "koordinat_boylam": 26.215,
+    "gps_format": "[39.585°N, 26.215°E]",
+    "kapasite": "3 Milyon m³",
+    "uygun_araclar": [
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Assos sahil ve Ayvacık çamlık yangınları için kara ve helikopter ikmali."
+  },
+  {
+    "id": "SK-062",
+    "isim": "Sarımsaklı Koyu Deniz Su Alım Sahası",
+    "il": "Balıkesir",
+    "ilce": "Ayvalık",
+    "bolge": "Şeytan Sofrası - Çamlık Orman Bölgesi",
+    "tip": "Deniz / Koy",
+    "koordinat_enlem": 39.268,
+    "koordinat_boylam": 26.668,
+    "gps_format": "[39.268°N, 26.668°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Ayvalık adalar ve Şeytan Sofrası kızılçam yangınlarında dalgasız koy."
+  },
+  {
+    "id": "SK-063",
+    "isim": "Balıkesir İkizcetepeler Baraj Gölü",
+    "il": "Balıkesir",
+    "ilce": "Merkez / Bigadiç",
+    "bolge": "Bigadiç - Sındırgı Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 39.525,
+    "koordinat_boylam": 27.955,
+    "gps_format": "[39.525°N, 27.955°E]",
+    "kapasite": "160 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Balıkesir iç bölge orman yangınlarında uçak ve helikopter alım barajı."
+  },
+  {
+    "id": "SK-064",
+    "isim": "Balıkesir Sındırgı Çaygören Barajı",
+    "il": "Balıkesir",
+    "ilce": "Sındırgı",
+    "bolge": "Sındırgı - Alaçam Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 39.245,
+    "koordinat_boylam": 28.215,
+    "gps_format": "[39.245°N, 28.215°E]",
+    "kapasite": "140 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Sındırgı ve Dursunbey çam orman yangınları temel su kaynağı."
+  },
+  {
+    "id": "SK-065",
+    "isim": "Bursa Doğancı Baraj Gölü",
+    "il": "Bursa",
+    "ilce": "Osmangazi / Orhaneli",
+    "bolge": "Uludağ Güney Yamaçları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.115,
+    "koordinat_boylam": 28.985,
+    "gps_format": "[40.115°N, 28.985°E]",
+    "kapasite": "43 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Uludağ milli parkı ve Orhaneli orman yangınlarında birincil baraj."
+  },
+  {
+    "id": "SK-066",
+    "isim": "Bursa Nilüfer Baraj Gölü",
+    "il": "Bursa",
+    "ilce": "Nilüfer / Keles",
+    "bolge": "Keles Dağ Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.045,
+    "koordinat_boylam": 28.935,
+    "gps_format": "[40.045°N, 28.935°E]",
+    "kapasite": "40 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Keles ve Harmancık orman yangınlarına müdahale barajı."
+  },
+  {
+    "id": "SK-067",
+    "isim": "İstanbul Ömerli Baraj Gölü",
+    "il": "İstanbul",
+    "ilce": "Çekmeköy / Şile",
+    "bolge": "Anadolu Yakası Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.045,
+    "koordinat_boylam": 29.355,
+    "gps_format": "[41.045°N, 29.355°E]",
+    "kapasite": "235 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Şile, Aydos ve Beykoz orman yangınlarında uçakların tatlı su ikmal noktası."
+  },
+  {
+    "id": "SK-068",
+    "isim": "İstanbul Terkos (Durusu) Gölü",
+    "il": "İstanbul",
+    "ilce": "Arnavutköy / Çatalca",
+    "bolge": "Avrupa Yakası Kuzey Ormanları",
+    "tip": "Doğal Göl / Baraj",
+    "koordinat_enlem": 41.315,
+    "koordinat_boylam": 28.685,
+    "gps_format": "[41.315°N, 28.685°E]",
+    "kapasite": "162 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Belgrad ormanı ve Çatalca orman yangınlarında ana ikmal gölü."
+  },
+  {
+    "id": "SK-069",
+    "isim": "İstanbul Darlık Baraj Gölü",
+    "il": "İstanbul",
+    "ilce": "Şile",
+    "bolge": "Şile - Ağva Kuzey Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.115,
+    "koordinat_boylam": 29.585,
+    "gps_format": "[41.115°N, 29.585°E]",
+    "kapasite": "107 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Şile ve Kandıra orman yangınlarında amfibik uçak su alımı."
+  },
+  {
+    "id": "SK-070",
+    "isim": "Kocaeli Yuvacık Baraj Gölü",
+    "il": "Kocaeli",
+    "ilce": "Başiskele / Kartepe",
+    "bolge": "Samanlı Dağları Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.645,
+    "koordinat_boylam": 29.935,
+    "gps_format": "[40.645°N, 29.935°E]",
+    "kapasite": "51 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Kartepe ve Karamürsel gürgen/kayın ormanı yangınları su kaynağı."
+  },
+  {
+    "id": "SK-071",
+    "isim": "Sakarya Sapanca Gölü",
+    "il": "Sakarya",
+    "ilce": "Sapanca / Serdivan",
+    "bolge": "Sapanca - Samanlı Dağları Sektörü",
+    "tip": "Doğal Göl",
+    "koordinat_enlem": 40.715,
+    "koordinat_boylam": 30.265,
+    "gps_format": "[40.715°N, 30.265°E]",
+    "kapasite": "Doğal Gölü (1.3 Bilyon m³)",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Sakarya, Kocaeli ve Geyve orman yangınlarında dev tatlı su kaynağı."
+  },
+  {
+    "id": "SK-072",
+    "isim": "Bilecik Pelitözü Göleti",
+    "il": "Bilecik",
+    "ilce": "Merkez",
+    "bolge": "Bilecik - Söğüt Çam Ormanları",
+    "tip": "Gölet",
+    "koordinat_enlem": 40.185,
+    "koordinat_boylam": 29.985,
+    "gps_format": "[40.185°N, 29.985°E]",
+    "kapasite": "4 Milyon m³",
+    "uygun_araclar": [
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Bilecik merkez ve Söğüt yangınlarına helikopter su alma noktası."
+  },
+  {
+    "id": "SK-073",
+    "isim": "Tekirdağ Ganoz Dağı Şarköy Körfezi",
+    "il": "Tekirdağ",
+    "ilce": "Şarköy",
+    "bolge": "Ganos Dağları Orman Sektörü",
+    "tip": "Deniz / Körfez",
+    "koordinat_enlem": 40.615,
+    "koordinat_boylam": 27.115,
+    "gps_format": "[40.615°N, 27.115°E]",
+    "kapasite": "Sınırsız",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Tekirdağ Şarköy ve Ganos orman yangınlarında Marmara denizi ikmali."
+  },
+  {
+    "id": "SK-074",
+    "isim": "Kırklareli Armağan Baraj Gölü",
+    "il": "Kırklareli",
+    "ilce": "Merkez / Demirköy",
+    "bolge": "Istranca (Yıldız) Dağları Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.885,
+    "koordinat_boylam": 27.485,
+    "gps_format": "[41.885°N, 27.485°E]",
+    "kapasite": "50 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Istranca meşe-kayın ormanları yangınları ana tatlı su kaynağı."
+  },
+  {
+    "id": "SK-075",
+    "isim": "Edirne Kadıköy Baraj Gölü",
+    "il": "Edirne",
+    "ilce": "Keşan",
+    "bolge": "Keşan - Koru Dağları Orman Hattı",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.815,
+    "koordinat_boylam": 26.685,
+    "gps_format": "[40.815°N, 26.685°E]",
+    "kapasite": "60 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Koru Dağları çam ormanı yangınları için baraj ikmal sahası."
+  },
+  {
+    "id": "SK-076",
+    "isim": "Kastamonu Karaçomak Baraj Gölü",
+    "il": "Kastamonu",
+    "ilce": "Merkez",
+    "bolge": "Kastamonu Merkez Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.315,
+    "koordinat_boylam": 33.785,
+    "gps_format": "[41.315°N, 33.785°E]",
+    "kapasite": "23 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Taşköprü ve Tosya sarıçam orman yangınlarında uçak ikmal noktası."
+  },
+  {
+    "id": "SK-077",
+    "isim": "Kastamonu Germeme Baraj Gölü",
+    "il": "Kastamonu",
+    "ilce": "Taşköprü",
+    "bolge": "Taşköprü Sarıçam Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.485,
+    "koordinat_boylam": 34.285,
+    "gps_format": "[41.485°N, 34.285°E]",
+    "kapasite": "15 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Taşköprü çam ormanları yangınlarında birincil baraj kaynağı."
+  },
+  {
+    "id": "SK-078",
+    "isim": "Karabük Yenice YH-15 Yangın Havuzu",
+    "il": "Karabük",
+    "ilce": "Yenice",
+    "bolge": "Yenice Ormanları",
+    "tip": "OGM Yangın Havuzu",
+    "koordinat_enlem": 41.185,
+    "koordinat_boylam": 32.315,
+    "gps_format": "[41.185°N, 32.315°E]",
+    "kapasite": "600 Ton",
+    "uygun_araclar": [
+      "Helikopter Bambi Bucket",
+      "Arazöz"
+    ],
+    "notlar": "Türkiye'nin en yoğun kayın-meşe ormanlarında helikopter su ikmali."
+  },
+  {
+    "id": "SK-079",
+    "isim": "Sinop Boyabat Saraydüzü Barajı",
+    "il": "Sinop",
+    "ilce": "Boyabat",
+    "bolge": "Sinop İç Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.385,
+    "koordinat_boylam": 34.885,
+    "gps_format": "[41.385°N, 34.885°E]",
+    "kapasite": "140 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Sinop ve Boyabat çam ormanları için baraj su ikmal hattı."
+  },
+  {
+    "id": "SK-080",
+    "isim": "Bolu Abant Gölü Su Alım Sahası",
+    "il": "Bolu",
+    "ilce": "Mudurnu",
+    "bolge": "Abant - Mudurnu Orman Sektörü",
+    "tip": "Doğal Göl",
+    "koordinat_enlem": 40.605,
+    "koordinat_boylam": 31.285,
+    "gps_format": "[40.605°N, 31.285°E]",
+    "kapasite": "Doğal Gölü",
+    "uygun_araclar": [
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Abant Tabiat Parkı ve Mudurnu orman yangınlarında helikopter alımı."
+  },
+  {
+    "id": "SK-081",
+    "isim": "Bolu Gölköy Baraj Gölü",
+    "il": "Bolu",
+    "ilce": "Merkez",
+    "bolge": "Bolu Merkez Çam Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.715,
+    "koordinat_boylam": 31.555,
+    "gps_format": "[40.715°N, 31.555°E]",
+    "kapasite": "24 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Bolu merkez, Aladağ ve Kartalkaya orman yangınları temel su alımı."
+  },
+  {
+    "id": "SK-082",
+    "isim": "Zonguldak Ulutan Baraj Gölü",
+    "il": "Zonguldak",
+    "ilce": "Merkez",
+    "bolge": "Zonguldak Orman ve Havza Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.385,
+    "koordinat_boylam": 31.815,
+    "gps_format": "[41.385°N, 31.815°E]",
+    "kapasite": "25 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Zonguldak ve Devrek gürgen ormanları yangınları için baraj kaynağı."
+  },
+  {
+    "id": "SK-083",
+    "isim": "Bartın Kirazlıköprü Baraj Gölü",
+    "il": "Bartın",
+    "ilce": "Ulus",
+    "bolge": "Küre Dağları Milli Park Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.545,
+    "koordinat_boylam": 32.485,
+    "gps_format": "[41.545°N, 32.485°E]",
+    "kapasite": "66 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Bartın ve Küre Dağları orman yangınlarına müdahale barajı."
+  },
+  {
+    "id": "SK-084",
+    "isim": "Düzce Hasanlar Baraj Gölü",
+    "il": "Düzce",
+    "ilce": "Yığılca",
+    "bolge": "Düzce - Yığılca Kayın Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.915,
+    "koordinat_boylam": 31.285,
+    "gps_format": "[40.915°N, 31.285°E]",
+    "kapasite": "55 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Düzce ve Yığılca yoğun yapraklı orman yangınları su kaynağı."
+  },
+  {
+    "id": "SK-085",
+    "isim": "Samsun Altınkaya Baraj Gölü",
+    "il": "Samsun",
+    "ilce": "Bafra / Vezirköprü",
+    "bolge": "Kızılırmak Vadisi Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.355,
+    "koordinat_boylam": 35.615,
+    "gps_format": "[41.355°N, 35.615°E]",
+    "kapasite": "5.7 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Samsun, Sinop ve Vezirköprü çam orman yangınlarında dev rezerv."
+  },
+  {
+    "id": "SK-086",
+    "isim": "Trabzon Uzungöl Tatlı Su İkmal Noktası",
+    "il": "Trabzon",
+    "ilce": "Çaykara",
+    "bolge": "Doğu Karadeniz Ladin Ormanları",
+    "tip": "Doğal Göl",
+    "koordinat_enlem": 40.615,
+    "koordinat_boylam": 40.285,
+    "gps_format": "[40.615°N, 40.285°E]",
+    "kapasite": "Doğal Göl",
+    "uygun_araclar": [
+      "Helikopter Bambi Bucket"
+    ],
+    "notlar": "Sarp vadi yamaçlarındaki orman yangınlarında helikopter ikmali."
+  },
+  {
+    "id": "SK-087",
+    "isim": "Artvin Borçka Baraj Gölü",
+    "il": "Artvin",
+    "ilce": "Borçka",
+    "bolge": "Çoruh Vadisi Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.355,
+    "koordinat_boylam": 41.685,
+    "gps_format": "[41.355°N, 41.685°E]",
+    "kapasite": "400 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Artvin sarp vadilerindeki yangınlarda dev baraj rezervi."
+  },
+  {
+    "id": "SK-088",
+    "isim": "Artvin Deriner Baraj Gölü",
+    "il": "Artvin",
+    "ilce": "Merkez",
+    "bolge": "Çoruh Kanyon Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 41.145,
+    "koordinat_boylam": 41.885,
+    "gps_format": "[41.145°N, 41.885°E]",
+    "kapasite": "1.9 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Türkiye'nin en yüksek barajlarında sarp orman yangınlarına su alımı."
+  },
+  {
+    "id": "SK-089",
+    "isim": "Rize İkizdere Çayı Alım Noktası",
+    "il": "Rize",
+    "ilce": "İkizdere",
+    "bolge": "Kaçkar Etekleri Orman Sektörü",
+    "tip": "Akarsu",
+    "koordinat_enlem": 40.785,
+    "koordinat_boylam": 40.555,
+    "gps_format": "[40.785°N, 40.555°E]",
+    "kapasite": "Sürekli Akış",
+    "uygun_araclar": [
+      "Arazöz",
+      "Helikopter"
+    ],
+    "notlar": "Kaçkar dağları yamaç orman yangınlarında vadi içi akarsu alımı."
+  },
+  {
+    "id": "SK-090",
+    "isim": "Giresun Alucra Topçam Baraj Gölü",
+    "il": "Giresun",
+    "ilce": "Şebinkarahisar",
+    "bolge": "Kelkit Vadisi Çam Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.315,
+    "koordinat_boylam": 38.415,
+    "gps_format": "[40.315°N, 38.415°E]",
+    "kapasite": "130 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Giresun iç kesim çam orman yangınları baraj kaynağı."
+  },
+  {
+    "id": "SK-091",
+    "isim": "Tokat Almus Baraj Gölü",
+    "il": "Tokat",
+    "ilce": "Almus",
+    "bolge": "Yeşilırmak Vadisi Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.385,
+    "koordinat_boylam": 36.915,
+    "gps_format": "[40.385°N, 36.915°E]",
+    "kapasite": "950 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Tokat, Niksar ve Reşadiye orman yangınlarında uçakların ana kaynağı."
+  },
+  {
+    "id": "SK-092",
+    "isim": "Amasya Yedi-Kır Baraj Gölü",
+    "il": "Amasya",
+    "ilce": "Suluova",
+    "bolge": "Akdağ Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.815,
+    "koordinat_boylam": 35.615,
+    "gps_format": "[40.815°N, 35.615°E]",
+    "kapasite": "60 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Amasya ve Merzifon dağlık çam ormanı yangınları su ikmali."
+  },
+  {
+    "id": "SK-093",
+    "isim": "Çorum Obruk Baraj Gölü",
+    "il": "Çorum",
+    "ilce": "Osmancık / Dodurga",
+    "bolge": "Kızılırmak Kanyon Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.885,
+    "koordinat_boylam": 34.785,
+    "gps_format": "[40.885°N, 34.785°E]",
+    "kapasite": "660 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Çorum ve İskilip çam ormanları yangınları için büyük su rezervi."
+  },
+  {
+    "id": "SK-094",
+    "isim": "Ankara Kızılcahamam Kurtboğazı Barajı",
+    "il": "Ankara",
+    "ilce": "Kızılcahamam",
+    "bolge": "Kızılcahamam Çam Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.285,
+    "koordinat_boylam": 32.685,
+    "gps_format": "[40.285°N, 32.685°E]",
+    "kapasite": "100 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Ankara kuzey çam ormanları ve Çamlıdere yangınlarında uçak ikmali."
+  },
+  {
+    "id": "SK-095",
+    "isim": "Ankara Çamlıdere Baraj Gölü",
+    "il": "Ankara",
+    "ilce": "Çamlıdere",
+    "bolge": "Çamlıdere Çam Ormanları Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.355,
+    "koordinat_boylam": 32.385,
+    "gps_format": "[40.355°N, 32.385°E]",
+    "kapasite": "1.2 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Ankara ve Bolu Gerede sınırı çam orman yangınları ana barajı."
+  },
+  {
+    "id": "SK-096",
+    "isim": "Eskişehir Çatören Baraj Gölü",
+    "il": "Eskişehir",
+    "ilce": "Seyitgazi",
+    "bolge": "Seyitgazi - Kırka Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 39.385,
+    "koordinat_boylam": 30.585,
+    "gps_format": "[39.385°N, 30.585°E]",
+    "kapasite": "45 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Eskişehir güney karaçam orman yangınlarında su alım sahası."
+  },
+  {
+    "id": "SK-097",
+    "isim": "Eskişehir Gökçekaya Baraj Gölü",
+    "il": "Eskişehir",
+    "ilce": "Mihalıççık",
+    "bolge": "Sündiken Dağları Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 40.035,
+    "koordinat_boylam": 30.855,
+    "gps_format": "[40.035°N, 30.855°E]",
+    "kapasite": "910 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Sündiken dağları ve Mihalıççık çam ormanları dev su kaynağı."
+  },
+  {
+    "id": "SK-098",
+    "isim": "Konya Beyşehir Gölü",
+    "il": "Konya / Isparta",
+    "ilce": "Beyşehir",
+    "bolge": "Anamas Dağları ve Göller Yöresi",
+    "tip": "Doğal Göl",
+    "koordinat_enlem": 37.785,
+    "koordinat_boylam": 31.555,
+    "gps_format": "[37.785°N, 31.555°E]",
+    "kapasite": "Doğal Göl (6.5 Bilyon m³)",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Konya Beyşehir ve Derebucak çam ormanları için dev göl rezervi."
+  },
+  {
+    "id": "SK-099",
+    "isim": "Karaman Ermenek Baraj Gölü",
+    "il": "Karaman",
+    "ilce": "Ermenek",
+    "bolge": "Ermenek Kanyon Ormanları",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 36.635,
+    "koordinat_boylam": 32.885,
+    "gps_format": "[36.635°N, 32.885°E]",
+    "kapasite": "4.5 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Karaman Ermenek ve Mersin Mut sınırı sarp çam ormanları su sahası."
+  },
+  {
+    "id": "SK-100",
+    "isim": "Kayseri Yamula Baraj Gölü",
+    "il": "Kayseri",
+    "ilce": "Kocasinan",
+    "bolge": "Kızılırmak Havzası",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.885,
+    "koordinat_boylam": 35.255,
+    "gps_format": "[38.885°N, 35.255°E]",
+    "kapasite": "3.5 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Kayseri ve Yozgat sınırı ağaçlandırma sahaları yangın ikmali."
+  },
+  {
+    "id": "SK-101",
+    "isim": "Sivas Hafik Pusat Özen Barajı",
+    "il": "Sivas",
+    "ilce": "Hafik",
+    "bolge": "Sivas Kuzey Çamlık Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 39.985,
+    "koordinat_boylam": 37.415,
+    "gps_format": "[39.985°N, 37.415°E]",
+    "kapasite": "95 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Sivas ve Tokat sınırı orman yangınlarında uçak ikmali."
+  },
+  {
+    "id": "SK-102",
+    "isim": "Bingöl Özlüce Baraj Gölü",
+    "il": "Bingöl",
+    "ilce": "Kiğı",
+    "bolge": "Peri Çayı Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 39.185,
+    "koordinat_boylam": 40.185,
+    "gps_format": "[39.185°N, 40.185°E]",
+    "kapasite": "1 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Bingöl ve Tunceli sınırı meşe ve çam ormanı yangınları baraj kaynağı."
+  },
+  {
+    "id": "SK-103",
+    "isim": "Tunceli Uzunçayır Baraj Gölü",
+    "il": "Tunceli",
+    "ilce": "Merkez / Ovacık",
+    "bolge": "Munzur Vadisi Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 39.085,
+    "koordinat_boylam": 39.555,
+    "gps_format": "[39.085°N, 39.555°E]",
+    "kapasite": "300 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Munzur Milli Parkı orman yangınlarında su alma havzası."
+  },
+  {
+    "id": "SK-104",
+    "isim": "Elazığ Keban Baraj Gölü",
+    "il": "Elazığ",
+    "ilce": "Keban / Ağın",
+    "bolge": "Fırat Havzası Meşe ve Çamlık Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.795,
+    "koordinat_boylam": 38.745,
+    "gps_format": "[38.795°N, 38.745°E]",
+    "kapasite": "31 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Elazığ, Malatya ve Tunceli havzası orman yangınlarında dev rezerv."
+  },
+  {
+    "id": "SK-105",
+    "isim": "Malatya Karakaya Baraj Gölü",
+    "il": "Malatya / Elazığ",
+    "ilce": "Battalgazi",
+    "bolge": "Karakaya Baraj Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.415,
+    "koordinat_boylam": 38.585,
+    "gps_format": "[38.415°N, 38.585°E]",
+    "kapasite": "9.5 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Malatya Pütürge ve Kale yamaç meşelik yangınları su kaynağı."
+  },
+  {
+    "id": "SK-106",
+    "isim": "Erzurum Tortum Gölü",
+    "il": "Erzurum",
+    "ilce": "Uzundere",
+    "bolge": "Tortum Vadisi Orman Sektörü",
+    "tip": "Doğal Göl",
+    "koordinat_enlem": 40.645,
+    "koordinat_boylam": 41.615,
+    "gps_format": "[40.645°N, 41.615°E]",
+    "kapasite": "Doğal Göl (57 Milyon m³)",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Erzurum kuzey vadi çam ve sarıçam orman yangınları su sahası."
+  },
+  {
+    "id": "SK-107",
+    "isim": "Kars Çıldır Gölü İkmal Noktası",
+    "il": "Kars / Ardahan",
+    "ilce": "Çıldır",
+    "bolge": "Kars-Ardahan Sarıçam Sektörü",
+    "tip": "Doğal Göl",
+    "koordinat_enlem": 41.045,
+    "koordinat_boylam": 43.255,
+    "gps_format": "[41.045°N, 43.255°E]",
+    "kapasite": "Doğal Göl",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter"
+    ],
+    "notlar": "Sarıçam ormanları ve Sarıkamış/Ardahan sahası için büyük göl."
+  },
+  {
+    "id": "SK-108",
+    "isim": "Şırnak Ilısu Baraj Gölü (Cizre - Güçlükonak Sektörü)",
+    "il": "Şırnak / Mardin",
+    "ilce": "Güçlükonak",
+    "bolge": "Cudi ve Gabar Orman Hattı",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.525,
+    "koordinat_boylam": 41.835,
+    "gps_format": "[37.525°N, 41.835°E]",
+    "kapasite": "10 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Cudi Dağı ve Gabar orman yangınları için dev su ikmal kaynağı."
+  },
+  {
+    "id": "SK-109",
+    "isim": "Diyarbakır Dicle Baraj Gölü",
+    "il": "Diyarbakır",
+    "ilce": "Dicle / Eğil",
+    "bolge": "Dicle - Kulp Orman ve Meşelik Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.255,
+    "koordinat_boylam": 40.185,
+    "gps_format": "[38.255°N, 40.185°E]",
+    "kapasite": "600 Milyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Diyarbakır kuzey ilçeleri ve Lice/Kulp meşelik yangınları ikmali."
+  },
+  {
+    "id": "SK-110",
+    "isim": "Siirt Botan Barajı (Alkalkum)",
+    "il": "Siirt",
+    "ilce": "Merkez",
+    "bolge": "Botan Vadisi Orman Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.945,
+    "koordinat_boylam": 42.045,
+    "gps_format": "[37.945°N, 42.045°E]",
+    "kapasite": "1.2 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Siirt ve Şırnak kuzeyi vadi meşelik yangınlarına baraj ikmali."
+  },
+  {
+    "id": "SK-111",
+    "isim": "Adıyaman Atatürk Baraj Gölü Kuzey Sahası",
+    "il": "Adıyaman / Şanlıurfa",
+    "ilce": "Kahta",
+    "bolge": "Atatürk Barajı Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 37.745,
+    "koordinat_boylam": 38.585,
+    "gps_format": "[37.745°N, 38.585°E]",
+    "kapasite": "48 Bilyon m³ (Türkiye'nin En Büyüğü)",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Adıyaman Nemrut yamaçları ve çevre orman yangınlarında sınırsız baraj rezervi."
+  },
+  {
+    "id": "SK-112",
+    "isim": "Batman Batman Baraj Gölü",
+    "il": "Batman / Diyarbakır",
+    "ilce": "Kozluk",
+    "bolge": "Kozluk ve Sason Dağ Sektörü",
+    "tip": "Baraj Gölü",
+    "koordinat_enlem": 38.155,
+    "koordinat_boylam": 41.185,
+    "gps_format": "[38.155°N, 41.185°E]",
+    "kapasite": "1.1 Bilyon m³",
+    "uygun_araclar": [
+      "Amfibik Uçak",
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Sason ve Kozluk dağlık meşelik yangınları için temel su alımı."
+  },
+  {
+    "id": "SK-113",
+    "isim": "Hakkari Zap Suyu İkmal Rampası",
+    "il": "Hakkari",
+    "ilce": "Çukurca",
+    "bolge": "Zap Vadisi Sektörü",
+    "tip": "Akarsu",
+    "koordinat_enlem": 37.455,
+    "koordinat_boylam": 43.615,
+    "gps_format": "[37.455°N, 43.615°E]",
+    "kapasite": "Sürekli Akış",
+    "uygun_araclar": [
+      "Helikopter",
+      "Arazöz"
+    ],
+    "notlar": "Hakkari dağlık vadi yangınlarında helikopter ve arazöz su ikmal noktası."
+  }
+]

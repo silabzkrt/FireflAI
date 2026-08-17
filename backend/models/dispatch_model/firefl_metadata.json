@@ -1,0 +1,7 @@
+{
+  "base_model": "Qwen/Qwen2.5-3B-Instruct",
+  "lora_rank": 16,
+  "lora_alpha": 32,
+  "training_examples": 313,
+  "test_mode": true
+}

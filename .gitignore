@@ -1,2 +1,16 @@
-__pycache__
+__pycache__/
+*.py[cod]
+*$py.class
+
 turkey_map.html
+
+.env
+.venv/
+venv/
+env/
+
+.vscode/
+.idea/
+
+.DS_Store
+Thumbs.db
