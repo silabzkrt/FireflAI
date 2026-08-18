@@ -8,7 +8,7 @@ from typing import Dict, Any, Tuple
 class FireSpreadService:
     def __init__(self):
         self.model_path = os.path.abspath(
-            os.path.join(os.path.dirname(__file__), "..", "models", "spread_model.joblib")
+            os.path.join(os.path.dirname(__file__), "..", "models", "sprad_model", "spread_model.joblib")
         )
         self.model = None
         self._load_model()
