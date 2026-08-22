@@ -15,11 +15,11 @@ class FireDetection(Base):
     latitude = Column(Float, nullable=True, index=True)
     longitude = Column(Float, nullable=True, index=True)
     
-    detection_point = Column(String(100), nullable=False)
+    detection_point = Column(String(100), nullable=True)
     captured_at = Column(DateTime(timezone=True), default=lambda: datetime.now(timezone.utc), index=True)
 
-    spread_polygons = relationship("FireSpreadPolygon", back_populates="detection", cascade="all, delete-orphan")
-    dispatch_plans = relationship("TacticalDispatchPlan", back_populates="detection", cascade="all, delete-orphan")
+    spread_polygons = relationship("FireSpreadPolygon", back_populates="detection")
+    dispatch_plans = relationship("TacticalDispatchPlan", back_populates="detection")
 
     @property
     def parsed_latitude(self) -> float:
@@ -64,7 +64,10 @@ class FireSpreadPolygon(Base):
     __tablename__ = "fire_spread_polygons"
 
     id = Column(Integer, primary_key=True, index=True)
-    fire_detection_id = Column(Integer, ForeignKey("fire_detections.id", ondelete="CASCADE"), nullable=False, index=True)
+    fire_detection_id = Column(Integer, ForeignKey("fire_detections.id", ondelete="SET NULL"), nullable=True, index=True)
+    
+    latitude = Column(Float, nullable=True, index=True)
+    longitude = Column(Float, nullable=True, index=True)
     
     spread_area = Column(Text, nullable=False)
     wind_direction = Column(Float, nullable=True)
@@ -82,10 +85,13 @@ class TacticalDispatchPlan(Base):
     __tablename__ = "tactical_dispatch_plans"
 
     id = Column(Integer, primary_key=True, index=True)
-    fire_detection_id = Column(Integer, ForeignKey("fire_detections.id", ondelete="CASCADE"), nullable=False, index=True)
+    fire_detection_id = Column(Integer, ForeignKey("fire_detections.id", ondelete="SET NULL"), nullable=True, index=True)
     
-    incident_caption = Column(String(255), nullable=True)
-    available_forces = Column(String(255), nullable=True)
+    latitude = Column(Float, nullable=True, index=True)
+    longitude = Column(Float, nullable=True, index=True)
+    
+    incident_caption = Column(String(500), nullable=True)
+    available_forces = Column(String(500), nullable=True)
     tactical_order = Column(Text, nullable=False)
     
     spread_area_wkt = Column(Text, nullable=True)

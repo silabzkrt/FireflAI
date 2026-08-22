@@ -17,7 +17,7 @@ from core.config import settings
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(
-    script_dir, "..", "models", "risk_service", "production_fire_model_xgboost"
+    script_dir, "..", "models", "risk_model", "production_fire_model_xgboost.joblib"
 )
 
 ssl_context = ssl._create_unverified_context()

@@ -99,28 +99,24 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Model 1: YOLO Detection
 app.include_router(
     detection_router,
     prefix="/api/v1/detection",
     tags=["Model 1: YOLO Detection"],
 )
 
-# Model 2: Meteorological Risk
 app.include_router(
     risk_router, 
     prefix="/api/v1/risk", 
     tags=["Model 2: Meteorological Risk"],
 )
 
-# Model 3: Fire Spread Prediction
 app.include_router(
     spread_router,
     prefix="/api/v1/spread",
     tags=["Model 3: Fire Spread"],
 )
 
-# Model 4: Tactical Dispatch
 app.include_router(
     dispatch_router,
     prefix="/api/v1/dispatch",

@@ -21,8 +21,8 @@ class DispatchService:
 
         base_dir = Path(__file__).resolve().parent.parent
         self.lora_path = base_dir / "models" / "dispatch_model"
-        if not self.lora_path.exists() and (base_dir / "models" / "spread_model").exists():
-            self.lora_path = base_dir / "models" / "spread_model"
+        if not self.lora_path.exists() and (base_dir / "models" / "dispatch_model").exists():
+            self.lora_path = base_dir / "models" / "dispatch_model"
 
         self.base_model_name = base_model_name
         self.model = None

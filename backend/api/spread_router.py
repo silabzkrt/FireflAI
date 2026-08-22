@@ -17,17 +17,45 @@ async def predict_spread(
     payload: SpreadPredictionRequest,
     db: Session = Depends(get_db)
 ):
-    detection = db.query(FireDetection).filter(FireDetection.id == payload.detection_id).first()
-    if not detection:
-        raise HTTPException(status_code=404, detail=f"Detection ID {payload.detection_id} bulunamadı.")
+    detection = None
+    if payload.detection_id:
+        detection = db.query(FireDetection).filter(FireDetection.id == payload.detection_id).first()
 
-    lat = getattr(detection, "latitude", None) or getattr(detection, "parsed_latitude", None) or 36.8550
-    lon = getattr(detection, "longitude", None) or getattr(detection, "parsed_longitude", None) or 28.2742
+    lat = None
+    lon = None
+
+    if detection:
+        lat = getattr(detection, "latitude", None) or getattr(detection, "parsed_latitude", None)
+        lon = getattr(detection, "longitude", None) or getattr(detection, "parsed_longitude", None)
+
+    if lat is None and getattr(payload, "latitude", None) is not None:
+        lat = payload.latitude
+    if lon is None and getattr(payload, "longitude", None) is not None:
+        lon = payload.longitude
+
+    # fallback
+    if lat is None:
+        lat = 36.8550
+    if lon is None:
+        lon = 28.2742
+
+    lat = float(lat)
+    lon = float(lon)
+
+    if detection and (getattr(detection, "latitude", None) is None or getattr(detection, "longitude", None) is None):
+        try:
+            if hasattr(detection, "latitude") and detection.latitude is None:
+                detection.latitude = lat
+            if hasattr(detection, "longitude") and detection.longitude is None:
+                detection.longitude = lon
+            db.commit()
+        except Exception:
+            db.rollback()
 
     try:
         spread_geojson, prob, area_ha = spread_service.predict_spread(
-            lat=float(lat),
-            lon=float(lon),
+            lat=lat,
+            lon=lon,
             wind_speed=payload.wind_speed,
             wind_direction=payload.wind_direction,
             hours=payload.prediction_hours,
@@ -39,8 +67,10 @@ async def predict_spread(
         coord_strings = [f"{c[0]} {c[1]}" for c in polygon_coords]
         polygon_wkt = f"SRID=4326;POLYGON(({','.join(coord_strings)}))"
 
+        fire_det_id = detection.id if detection else payload.detection_id
+
         new_polygon = FireSpreadPolygon(
-            fire_detection_id=payload.detection_id,
+            fire_detection_id=fire_det_id,
             spread_area=polygon_wkt,
             wind_speed=payload.wind_speed,
             wind_direction=payload.wind_direction,
@@ -52,7 +82,7 @@ async def predict_spread(
         db.commit()
 
         return SpreadPredictionResponse(
-            detection_id=payload.detection_id,
+            detection_id=fire_det_id,
             prediction_hours=payload.prediction_hours,
             spread_area_geojson=spread_geojson,
             spread_probability=prob,
@@ -71,7 +101,6 @@ def get_spread_history(
     detection_id: Optional[int] = Query(None, description="Opsiyonel: Sadece bu yangına ait olanları filtrele"),
     db: Session = Depends(get_db)
 ):
-    """Geçmişteki N adet yayılım kaydını getirir (Opsiyonel olarak detection_id ile filtrelenebilir)."""
     query = db.query(FireSpreadPolygon)
     if detection_id is not None:
         query = query.filter(FireSpreadPolygon.fire_detection_id == detection_id)
@@ -96,7 +125,6 @@ def get_spread_history(
 
 @router.get("/{spread_id}")
 def get_spread_by_id(spread_id: int, db: Session = Depends(get_db)):
-    """Spesifik bir yayılım simülasyonunu kendi ID'si ile getirir."""
     s = db.query(FireSpreadPolygon).filter(FireSpreadPolygon.id == spread_id).first()
     if not s:
         raise HTTPException(status_code=404, detail="Yayılım kaydı bulunamadı.")
@@ -113,9 +141,9 @@ def get_spread_by_id(spread_id: int, db: Session = Depends(get_db)):
         "created_at": s.created_at.isoformat() if s.created_at else None
     }
 
+
 @router.get("/by-detection/{detection_id}")
 def get_spreads_by_detection(detection_id: int, db: Session = Depends(get_db)):
-    """Belirli bir yangın tespitine ait tüm yayılım simülasyonlarını getirir."""
     spreads = (
         db.query(FireSpreadPolygon)
         .filter(FireSpreadPolygon.fire_detection_id == detection_id)
