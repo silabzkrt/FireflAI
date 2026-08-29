@@ -1,3 +1,10 @@
+"""
+FireflAI - Core Constants & Geographical Reference Data
+
+Defines static feature column mappings for ML models, geographic bounding box boundaries
+for Turkey, preconfigured fixed observation stations, and grid partitioning coordinates.
+"""
+
 FEATURE_COLUMNS = [
     "Temperature", "RH", "Ws", "Wind_Direction", "Rain", "Rain_3D_Sum",
     "Rain_7D_Sum", "Temp_3D_Max", "RH_3D_Mean", "Dryness_Index", "VPD",

@@ -1,3 +1,11 @@
+"""
+FireflAI - Wildfire Spread Prediction API Router
+
+Exposes endpoints for computing machine learning-based wildfire propagation forecasts.
+Handles spatial coordinate resolution, queries the spread modeling service, persists generated
+GeoJSON polygons to the database, and returns historical or live spread projections.
+"""
+
 from typing import Optional
 from fastapi import APIRouter, HTTPException, Depends, Query
 from sqlalchemy.orm import Session

@@ -1,3 +1,11 @@
+"""
+FireflAI - Application Configuration & Settings
+
+Manages environment variables, external API endpoints, and credential configurations.
+Defines base URLs and formats for NASA FIRMS satellite data, Open-Meteo weather and air quality APIs,
+and Open-Elevation services.
+"""
+
 import os
 from dotenv import load_dotenv
 

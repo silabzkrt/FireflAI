@@ -1,3 +1,11 @@
+"""
+FireflAI - Wildfire Spread Simulation & Modeling Service
+
+Calculates spatial wildfire propagation polygons and burn probabilities.
+Combines machine learning classification with elliptical wind/slope vector expansion algorithms
+to generate GeoJSON propagation contours over multi-hour forecast horizons.
+"""
+
 import os
 import math
 import joblib

@@ -1,3 +1,11 @@
+/**
+ * SpreadPanel Component
+ * 
+ * Displays machine learning wildfire propagation predictions.
+ * Presents calculated projections including estimated burn area (hectares),
+ * spread probability percentage, and live meteorological wind vector data.
+ */
+
 import { Wind, Compass } from 'lucide-react';
 
 export default function SpreadPanel({ spreadPrediction }) {

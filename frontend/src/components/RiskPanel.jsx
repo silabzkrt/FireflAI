@@ -1,3 +1,11 @@
+/**
+ * RiskPanel Component
+ * 
+ * Left-hand sidebar panel for sector surveillance and risk assessment.
+ * Filters and lists monitored sectors across Turkey by risk level (Critical, High, Fixed Stations),
+ * allowing operators to inspect individual sector coordinates, risk score bars, and active fire alerts.
+ */
+
 import { Radio, ChevronRight, Flame } from 'lucide-react';
 import { getRiskColor, getRiskTier } from '../utils/helpers';
 

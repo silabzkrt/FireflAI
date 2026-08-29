@@ -1,3 +1,10 @@
+"""
+FireflAI - Detection Pydantic Schemas
+
+Defines request and response data validation models for drone visual fire/smoke detection,
+including bounding box coordinates, class labels, and confidence ratings.
+"""
+
 from pydantic import BaseModel, Field
 from typing import List, Optional
 

@@ -1,9 +1,19 @@
+/**
+ * FireflAI - Main Dashboard Application Component
+ * 
+ * Central controller and layout orchestrator for the FireflAI wildfire intelligence system.
+ * Manages Google Maps integration, real-time and historical risk grid synchronization,
+ * active wildfire target selections, ML drone deployment workflows (YOLO verification,
+ * cellular automata spread modeling, and Qwen-3B tactical dispatch generation), as well as
+ * temporal timeline scrubbing and tactical asset overlays (water sources, settlements).
+ */
+
 import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import axios from 'axios';
 import { GoogleMap, useJsApiLoader, Marker, Polygon } from '@react-google-maps/api';
 import { ShieldAlert, Flame, X } from 'lucide-react';
 
-import { API_BASE, fetchLiveWeather, parseWktPolygon, createMarkerIcon } from './utils/helpers';
+import { API_BASE, parseWktPolygon, createMarkerIcon, createWaterMarkerIcon, createSettlementMarkerIcon } from './utils/helpers';
 import TopNav from './components/TopNav';
 import RiskPanel from './components/RiskPanel';
 import TargetDetailsCard from './components/TargetDetailsCard';
@@ -11,6 +21,22 @@ import MapLegend from './components/MapLegend';
 import DetectionPanel from './components/DetectionPanel';
 import SpreadPanel from './components/SpreadPanel';
 import DispatchPanel from './components/DispatchPanel';
+import TimelineSlider from './components/TimelineSlider';
+
+const MAP_OPTIONS = {
+  mapTypeId: 'hybrid',
+  disableDefaultUI: true,
+};
+
+const MAP_CENTER = { lat: 39.0, lng: 35.0 };
+const POLYGON_STYLE = {
+  fillColor: '#ef4444',
+  fillOpacity: 0.45,
+  strokeColor: '#dc2626',
+  strokeOpacity: 0.95,
+  strokeWeight: 2.5,
+  zIndex: 10,
+};
 
 export default function App() {
   const [riskPoints, setRiskPoints] = useState([]);
@@ -26,161 +52,144 @@ export default function App() {
   const [isSyncing, setIsSyncing] = useState(false);
   const [errorMsg, setErrorMsg] = useState(null);
   const [filterType, setFilterType] = useState('ALL');
-  
+  const [hoursAgo, setHoursAgo] = useState(0);
+
   const mapRef = useRef(null);
+  const debounceTimerRef = useRef(null);
+  const hourCacheRef = useRef({});
+  const abortControllerRef = useRef(null);
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
-    googleMapsApiKey: 'AIzaSyDZKKHPfUl62NLPtJzHhuTrAvUyVGmfZ20'
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || ''
   });
 
-  const onLoad = useCallback(function callback(map) { mapRef.current = map; }, []);
-  const onUnmount = useCallback(function callback(map) { mapRef.current = null; }, []);
+  const onLoad = useCallback((map) => { mapRef.current = map; }, []);
+  const onUnmount = useCallback(() => { mapRef.current = null; }, []);
 
-  const fetchDatabaseState = useCallback(async () => {
+  const fetchDatabaseState = useCallback(async (targetHours = 0, forceRefresh = false) => {
+    setHoursAgo(targetHours);
+
+    if (!forceRefresh && hourCacheRef.current[targetHours]) {
+      const cached = hourCacheRef.current[targetHours];
+      setRiskPoints(cached.points);
+      setFireWarning(cached.hasFire);
+      if (cached.activeFire) {
+        setSelectedPoint(cached.activeFire);
+        setActiveDetection(cached.activeFire.detection || null);
+        setSpreadPrediction(cached.activeFire.spreadPrediction || null);
+        setDispatchPlan(cached.activeFire.dispatchPlan || null);
+        setDroneStatus('DISPATCHED');
+      } else {
+        setSelectedPoint(null);
+        setActiveDetection(null);
+        setSpreadPrediction(null);
+        setDispatchPlan(null);
+        setDroneStatus('IDLE');
+      }
+      setIsSyncing(false);
+      return;
+    }
+
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    abortControllerRef.current = new AbortController();
+
     setIsSyncing(true);
     setErrorMsg(null);
 
     try {
+      const signal = abortControllerRef.current.signal;
       let rawPoints = [];
+
       try {
-        const gridRes = await axios.get(`${API_BASE}/risk/turkey-grid`, { params: { hours_ago: 0 } });
-        rawPoints = Array.isArray(gridRes.data) ? gridRes.data : (gridRes.data?.data || gridRes.data?.grid || gridRes.data?.sectors || gridRes.data?.points || []);
+        const gridRes = await axios.get(`${API_BASE}/risk/turkey-grid`, {
+          params: { hours_ago: targetHours },
+          signal
+        });
+        rawPoints = Array.isArray(gridRes.data)
+          ? gridRes.data
+          : (gridRes.data?.data || gridRes.data?.grid || gridRes.data?.sectors || gridRes.data?.points || []);
       } catch (gridErr) {
-        try {
-          const fallbackRes = await axios.get(`${API_BASE}/risk/grid?hours_ago=0`);
-          rawPoints = Array.isArray(fallbackRes.data) ? fallbackRes.data : (fallbackRes.data?.data || []);
-        } catch (fbErr) {
-          console.error('All risk grid endpoints failed:', fbErr);
-        }
+        if (axios.isCancel(gridErr)) return;
+        const fallbackRes = await axios.get(`${API_BASE}/risk/grid`, {
+          params: { hours_ago: targetHours },
+          signal
+        });
+        rawPoints = Array.isArray(fallbackRes.data) ? fallbackRes.data : (fallbackRes.data?.data || []);
       }
-      
+
       let basePoints = rawPoints
         .map((p, idx) => {
-          const rawScore = Number(p.risk_score ?? p.score ?? p.risk ?? p.fire_risk ?? 0);
-          const normalizedScore = (rawScore > 0 && rawScore <= 1.0) ? Math.round(rawScore * 100) : Math.round(rawScore);
+          const rawScore = Number(p.risk_score ?? p.risk_level ?? p.score ?? 0);
+          const normalizedScore = rawScore > 0 && rawScore <= 1.0 ? Math.round(rawScore * 100) : Math.round(rawScore);
 
           return {
             ...p,
-            latitude: Number(p.latitude ?? p.lat ?? p.koordinat_enlem ?? 0),
-            longitude: Number(p.longitude ?? p.lon ?? p.lng ?? p.koordinat_boylam ?? 0),
+            latitude: Number(p.latitude ?? p.lat ?? 0),
+            longitude: Number(p.longitude ?? p.lon ?? p.lng ?? 0),
             risk_score: normalizedScore,
-            location: p.location_name || p.name || p.location || p.istasyon_adi || (p.is_fixed ? `Tower #${idx + 1}` : `Grid P-${idx}`),
+            temperature: p.temperature != null ? Number(p.temperature) : null,
+            humidity: p.humidity != null ? Number(p.humidity) : null,
+            wind_speed: p.wind_speed != null ? Number(p.wind_speed) : null,
+            wind_direction: p.wind_direction != null ? Number(p.wind_direction) : null,
+            location: p.location_name || p.risk_point || p.location || p.istasyon_adi || (p.is_fixed ? `Tower #${idx + 1}` : `Grid P-${idx}`),
             is_fixed: Boolean(p.is_fixed ?? p.fixed ?? p.is_station),
             is_wildfire: Boolean(p.is_wildfire || p.wildfire || normalizedScore >= 95),
             slope: Number(p.slope ?? 5.0),
-            vegetation_density: Number(p.vegetation_density ?? 0.7)
+            vegetation_density: Number(p.vegetation_density ?? 0.7),
+            captured_at: p.captured_at
           };
         })
-        .filter(pt => pt.is_fixed === true || pt.is_wildfire === true || pt.risk_score > 60);
+        .filter(pt => pt.is_fixed || pt.is_wildfire || pt.risk_score > 60);
 
-      let droneDetections = [];
-      try {
-        const detRes = await axios.get(`${API_BASE}/detection/history?limit=50`);
-        droneDetections = Array.isArray(detRes.data) ? detRes.data : (detRes.data?.data || []);
-      } catch (detErr) {
-        console.warn('Detection history fetch failed:', detErr);
-      }
+      const [detRes, spreadRes, dispRes] = await Promise.allSettled([
+        axios.get(`${API_BASE}/detection/history?limit=50`, { signal }),
+        axios.get(`${API_BASE}/spread/history?limit=50`, { signal }),
+        axios.get(`${API_BASE}/dispatch/history?limit=20`, { signal })
+      ]);
 
-      let activeSpreads = [];
-      try {
-        const spreadHistoryRes = await axios.get(`${API_BASE}/spread/history?limit=50`);
-        activeSpreads = Array.isArray(spreadHistoryRes.data) ? spreadHistoryRes.data : (spreadHistoryRes.data?.data || []);
-      } catch (spreadErr) {
-        console.warn('Spread history fetch failed:', spreadErr);
-      }
+      const droneDetections = detRes.status === 'fulfilled' ? (Array.isArray(detRes.value.data) ? detRes.value.data : detRes.value.data?.data || []) : [];
+      const activeSpreads = spreadRes.status === 'fulfilled' ? (Array.isArray(spreadRes.value.data) ? spreadRes.value.data : spreadRes.value.data?.data || []) : [];
+      const dispatchPlans = dispRes.status === 'fulfilled' ? (Array.isArray(dispRes.value.data) ? dispRes.value.data : dispRes.value.data?.data || []) : [];
 
-      let dispatchPlans = [];
-      try {
-        const dispatchRes = await axios.get(`${API_BASE}/dispatch/history?limit=20`);
-        dispatchPlans = Array.isArray(dispatchRes.data) ? dispatchRes.data : (dispatchRes.data?.data || []);
-      } catch (dispErr) {
-        console.warn('Dispatch history fetch failed:', dispErr);
-      }
+      const confirmedFires = droneDetections.map((det, dIdx) => {
+        const detId = det.id ?? det.detection_id ?? det.fire_detection_id ?? `D-${dIdx + 1}`;
+        const detLat = Number(det.latitude ?? det.lat ?? 0);
+        const detLng = Number(det.longitude ?? det.lon ?? 0);
 
-      const confirmedFires = [];
-
-      for (const det of droneDetections) {
-        const detId = det.id ?? det.detection_id ?? det.fire_detection_id;
-        const detLat = Number(det.latitude ?? det.parsed_latitude ?? det.lat ?? 0);
-        const detLng = Number(det.longitude ?? det.parsed_longitude ?? det.lon ?? det.lng ?? 0);
-        
         const matchingSpread = activeSpreads.find(s => s.fire_detection_id === detId);
-        const matchingDispatch = dispatchPlans.find(p => p.fire_detection_id === detId);
+        const matchingDispatch = dispatchPlans.find(
+          p => p.fire_detection_id === detId || (Math.abs(p.latitude - detLat) < 0.1 && Math.abs(p.longitude - detLng) < 0.1)
+        );
+        const fallbackPoint = basePoints.find(p => Math.abs(p.latitude - detLat) < 0.25 && Math.abs(p.longitude - detLng) < 0.25);
 
-        const liveWeather = await fetchLiveWeather(detLat, detLng);
-
-        let spreadObj = null;
-        if (matchingSpread) {
-          spreadObj = {
-            detection_id: detId,
-            prediction_hours: matchingSpread.prediction_hours || 6,
-            spread_probability: matchingSpread.spread_probability ?? 0.88,
-            affected_area_hectares: matchingSpread.affected_area_hectares ?? 10.0,
-            wind_speed: matchingSpread.wind_speed ?? liveWeather.wind_speed,
-            wind_direction: matchingSpread.wind_direction ?? liveWeather.wind_direction,
-            temperature: liveWeather.temperature,
-            humidity: liveWeather.humidity,
-            raw_wkt: matchingSpread.spread_area,
-            spread_area_geojson: matchingSpread.spread_area_geojson
-          };
-        } else {
-          spreadObj = {
-            detection_id: detId,
-            prediction_hours: 6,
-            spread_probability: 0.88,
-            affected_area_hectares: 12.5,
-            ...liveWeather
-          };
-        }
-
-        confirmedFires.push({
+        return {
           detection_id: detId,
           latitude: detLat,
           longitude: detLng,
           class_name: det.class_name || det.label || 'WILDFIRE & SMOKE',
-          confidence: det.confidence || det.peak_confidence || 0.88,
-          total_frames: det.total_frames || det.total_frames_processed || 0,
-          detected_at: det.created_at || det.detected_at || new Date().toISOString(),
-          spreadPrediction: spreadObj,
-          dispatchPlan: matchingDispatch || null
-        });
-      }
-
-      for (const spread of activeSpreads) {
-        const detId = spread.fire_detection_id;
-        if (!confirmedFires.some(f => f.detection_id === detId)) {
-          const parsedCoords = parseWktPolygon(spread.spread_area);
-          const originLat = parsedCoords?.[0]?.lat || 36.8550;
-          const originLng = parsedCoords?.[0]?.lng || 28.2742;
-          const matchingDispatch = dispatchPlans.find(p => p.fire_detection_id === detId);
-          const liveWeather = await fetchLiveWeather(originLat, originLng);
-
-          confirmedFires.push({
+          confidence: det.confidence || 0.88,
+          total_frames: det.total_frames || 0,
+          detected_at: det.created_at || new Date().toISOString(),
+          spreadPrediction: {
             detection_id: detId,
-            latitude: originLat,
-            longitude: originLng,
-            class_name: 'WILDFIRE & SMOKE',
-            confidence: spread.spread_probability ?? 0.88,
-            detected_at: spread.created_at || new Date().toISOString(),
-            spreadPrediction: {
-              detection_id: detId,
-              prediction_hours: spread.prediction_hours || 6,
-              spread_probability: spread.spread_probability ?? 0.88,
-              affected_area_hectares: spread.affected_area_hectares ?? 10.0,
-              wind_speed: spread.wind_speed ?? liveWeather.wind_speed,
-              wind_direction: spread.wind_direction ?? liveWeather.wind_direction,
-              temperature: liveWeather.temperature,
-              humidity: liveWeather.humidity,
-              raw_wkt: spread.spread_area,
-              spread_area_geojson: spread.spread_area_geojson
-            },
-            dispatchPlan: matchingDispatch || null
-          });
-        }
-      }
+            prediction_hours: matchingSpread?.prediction_hours || 6,
+            spread_probability: matchingSpread?.spread_probability ?? 0.88,
+            affected_area_hectares: matchingSpread?.affected_area_hectares ?? 10.0,
+            wind_speed: matchingSpread?.wind_speed ?? fallbackPoint?.wind_speed ?? 14.0,
+            wind_direction: matchingSpread?.wind_direction ?? fallbackPoint?.wind_direction ?? 160.0,
+            temperature: matchingSpread?.temperature ?? fallbackPoint?.temperature,
+            humidity: matchingSpread?.humidity ?? fallbackPoint?.humidity,
+            raw_wkt: matchingSpread?.spread_area,
+            spread_area_geojson: matchingSpread?.spread_area_geojson
+          },
+          dispatchPlan: matchingDispatch || null
+        };
+      });
 
-      confirmedFires.forEach(fire => {
+      confirmedFires.forEach((fire, idx) => {
         let matched = false;
         basePoints = basePoints.map(p => {
           if (Math.abs(p.latitude - fire.latitude) < 0.15 && Math.abs(p.longitude - fire.longitude) < 0.15) {
@@ -204,7 +213,7 @@ export default function App() {
             longitude: fire.longitude,
             risk_score: 99,
             is_wildfire: true,
-            location: `Wildfire Sector #${fire.detection_id}`,
+            location: fire.detection_id ? `Wildfire Sector #${fire.detection_id}` : `Wildfire Incident #${idx + 1}`,
             threat_name: 'CONFIRMED WILDFIRE',
             detection: fire,
             spreadPrediction: fire.spreadPrediction,
@@ -214,30 +223,91 @@ export default function App() {
       });
 
       const firstActiveFire = basePoints.find(p => p.is_wildfire);
+      const hasFire = Boolean(firstActiveFire);
+
+      hourCacheRef.current[targetHours] = {
+        points: basePoints,
+        hasFire,
+        activeFire: firstActiveFire || null
+      };
+
+      setRiskPoints(basePoints);
+      setFireWarning(hasFire);
       if (firstActiveFire) {
-        setFireWarning(true);
         setSelectedPoint(firstActiveFire);
         setActiveDetection(firstActiveFire.detection);
         setSpreadPrediction(firstActiveFire.spreadPrediction || null);
         setDispatchPlan(firstActiveFire.dispatchPlan || null);
         setDroneStatus('DISPATCHED');
       }
-
-      setRiskPoints(basePoints);
     } catch (err) {
+      if (axios.isCancel(err)) return;
       console.error('Database Sync Error:', err);
-      setErrorMsg('Failed to sync risk grid & active fires from database.');
+      setErrorMsg(`Failed to sync risk grid for T - ${targetHours}H.`);
     } finally {
       setIsSyncing(false);
     }
   }, []);
 
-  useEffect(() => { fetchDatabaseState(); }, [fetchDatabaseState]);
+  useEffect(() => {
+    let isMounted = true;
+    let timeoutId;
+    let intervalId;
+
+    // Fetch ONLY hours=0 at start
+    fetchDatabaseState(0, true);
+
+    const now = new Date();
+    const nextHour = new Date();
+    nextHour.setHours(now.getHours() + 1, 0, 0, 0);
+    const msUntilNextHour = nextHour.getTime() - now.getTime();
+
+    timeoutId = setTimeout(() => {
+      if (!isMounted) return;
+      fetchDatabaseState(0, true);
+      intervalId = setInterval(() => {
+        if (isMounted) fetchDatabaseState(0, true);
+      }, 60 * 60 * 1000);
+    }, msUntilNextHour);
+
+    return () => {
+      isMounted = false;
+      clearTimeout(timeoutId);
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [fetchDatabaseState]);
+
+  const handleHourSliderChange = (newHours) => {
+    setHoursAgo(newHours);
+
+    if (hourCacheRef.current[newHours]) {
+      const cached = hourCacheRef.current[newHours];
+      setRiskPoints(cached.points);
+      setFireWarning(cached.hasFire);
+    }
+
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+
+    debounceTimerRef.current = setTimeout(() => {
+      fetchDatabaseState(newHours);
+    }, 600); 
+  };
+
+  const handlePresetClick = (newHours) => {
+    setHoursAgo(newHours);
+    if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
+    fetchDatabaseState(newHours);
+  };
 
   const handleSelectPoint = (point) => {
     setSelectedPoint(point);
     setErrorMsg(null);
     setDispatchExecuted(false);
+
+    if (mapRef.current) {
+      mapRef.current.panTo({ lat: point.latitude, lng: point.longitude });
+      mapRef.current.setZoom(8);
+    }
 
     if (point.detection) {
       setActiveDetection(point.detection);
@@ -262,61 +332,60 @@ export default function App() {
     } catch (e) {
       console.warn('Fallback test video load', e);
     }
-    return new Blob(["mock-video-binary-stream"], { type: 'video/mp4' });
+    return new Blob(['mock-video-binary-stream'], { type: 'video/mp4' });
   };
 
-  const handleGenerateDispatch = async (targetPoint, detectionData, windData) => {
-    if (!targetPoint && !detectionData) return;
-    const targetLat = targetPoint?.latitude ?? detectionData?.latitude ?? selectedPoint?.latitude;
-    const targetLng = targetPoint?.longitude ?? detectionData?.longitude ?? selectedPoint?.longitude;
-    
-    const rawDetId = detectionData?.detection_id ?? 
-                    targetPoint?.detection?.detection_id ?? 
-                    targetPoint?.detection_id ?? 
-                    null;
+  const handleGenerateDispatch = async (targetPoint) => {
+    const targetLat = targetPoint?.latitude ?? selectedPoint?.latitude;
+    const targetLng = targetPoint?.longitude ?? selectedPoint?.longitude;
 
-    const parsedDetId = rawDetId ? parseInt(rawDetId, 10) : null;
-    const validDetId = (parsedDetId && !isNaN(parsedDetId)) ? parsedDetId : null;
-    const className = detectionData?.class_name || targetPoint?.detection?.class_name || selectedPoint?.detection?.class_name || 'WILDFIRE';
+    if (!targetLat || !targetLng) return;
+
+    if (targetPoint?.dispatchPlan) {
+      setDispatchPlan(targetPoint.dispatchPlan);
+      setSelectedPoint(prev => ({ ...prev, dispatchPlan: targetPoint.dispatchPlan }));
+      return;
+    }
 
     setDispatchLoading(true);
     setErrorMsg(null);
     setDispatchExecuted(false);
 
-    let weather = windData;
-    if (!weather || !weather.wind_speed) {
-      weather = await fetchLiveWeather(targetLat, targetLng);
-    }
-
-    const windSpeed = parseFloat(Number(weather.wind_speed).toFixed(1));
-    const windDir = parseFloat(Number(weather.wind_direction).toFixed(1));
-    const predHours = spreadPrediction?.prediction_hours ?? 6;
-
     try {
-      const res = await axios.post(`${API_BASE}/dispatch/generate-plan`, {
-        detection_id: validDetId,
-        latitude: parseFloat(Number(targetLat).toFixed(6)),
-        longitude: parseFloat(Number(targetLng).toFixed(6)),
-        prediction_hours: predHours,
-        wind_speed: windSpeed,
-        wind_direction: windDir,
-        incident_caption: `Aktif ${className} yangını tespit edildi. Koordinat: [${Number(targetLat).toFixed(4)}°N, ${Number(targetLng).toFixed(4)}°E]`,
-        available_forces: "2 Amfibik Uçak, 4 Helikopter, 12 Arazöz, 2 Dozer, 50 Personel"
-      });
+      const histRes = await axios.get(`${API_BASE}/dispatch/history?limit=50`);
+      const allPlans = Array.isArray(histRes.data) ? histRes.data : (histRes.data?.data || []);
 
-      setDispatchPlan(res.data);
+      const existingPlan = allPlans.find(
+        p => p.latitude != null && p.longitude != null &&
+             Math.abs(Number(p.latitude) - Number(targetLat)) < 0.01 &&
+             Math.abs(Number(p.longitude) - Number(targetLng)) < 0.01
+      );
 
-      setRiskPoints(prev => prev.map(p => {
-        if (p.latitude === targetLat && p.longitude === targetLng) {
-          return { ...p, dispatchPlan: res.data };
-        }
-        return p;
-      }));
+      if (existingPlan) {
+        setDispatchPlan(existingPlan);
+        setRiskPoints(prev =>
+          prev.map(p => (p.latitude === targetLat && p.longitude === targetLng ? { ...p, dispatchPlan: existingPlan } : p))
+        );
+        setSelectedPoint(prev => ({ ...prev, dispatchPlan: existingPlan }));
+      } else {
+        const res = await axios.post(`${API_BASE}/dispatch/generate-plan`, {
+          latitude: targetLat,
+          longitude: targetLng,
+          detection_id: targetPoint?.detection?.detection_id || selectedPoint?.detection?.detection_id || null,
+          wind_speed: targetPoint?.wind_speed ?? 15.0,
+          wind_direction: targetPoint?.wind_direction ?? 180.0
+        });
 
-      setSelectedPoint(prev => ({ ...prev, dispatchPlan: res.data }));
+        const newPlan = res.data;
+        setDispatchPlan(newPlan);
+        setRiskPoints(prev =>
+          prev.map(p => (p.latitude === targetLat && p.longitude === targetLng ? { ...p, dispatchPlan: newPlan } : p))
+        );
+        setSelectedPoint(prev => ({ ...prev, dispatchPlan: newPlan }));
+      }
     } catch (err) {
-      console.error('Dispatch model generation failed:', err);
-      setErrorMsg('Failed to run AI dispatch model for these coordinates.');
+      console.error('Dispatch fetch/generation error:', err);
+      setErrorMsg('Failed to load dispatch plan from database.');
     } finally {
       setDispatchLoading(false);
     }
@@ -339,13 +408,15 @@ export default function App() {
       fd.append('latitude', point.latitude);
       fd.append('longitude', point.longitude);
 
-      const detectionRes = await axios.post(`${API_BASE}/detection/detect-frame`, fd, { headers: { 'Content-Type': 'multipart/form-data' } });
+      const detectionRes = await axios.post(`${API_BASE}/detection/detect-frame`, fd, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
       const data = detectionRes.data || {};
-      
+
       const rawDetId = data.detection_id ?? data.id ?? data.fire_detection_id ?? data.data?.detection_id ?? data.data?.id ?? null;
       const parsedDetId = rawDetId ? parseInt(rawDetId, 10) : null;
-      const detId = (parsedDetId && !isNaN(parsedDetId)) ? parsedDetId : null;
-      
+      const detId = parsedDetId && !isNaN(parsedDetId) ? parsedDetId : null;
+
       let allDetections = [];
       if (Array.isArray(data.detections_by_frame)) allDetections = data.detections_by_frame.flatMap(frame => frame.detections || []);
       else if (Array.isArray(data.detections)) allDetections = data.detections;
@@ -386,7 +457,13 @@ export default function App() {
         setActiveDetection(detectionData);
         setFireWarning(true);
 
-        const weatherPayload = await fetchLiveWeather(point.latitude, point.longitude);
+        const weatherPayload = {
+          wind_speed: point.wind_speed ?? 14.0,
+          wind_direction: point.wind_direction ?? 160.0,
+          temperature: point.temperature ?? 28.0,
+          humidity: point.humidity ?? 45.0
+        };
+
         let spreadData = null;
 
         try {
@@ -403,25 +480,33 @@ export default function App() {
 
           spreadData = { ...spreadRes.data, detection_id: detId, prediction_hours: spreadRes.data?.prediction_hours ?? 6, ...weatherPayload };
           setSpreadPrediction(spreadData);
-        } catch (spreadErr) { console.warn('Spread ML model failed:', spreadErr); }
+        } catch (spreadErr) {
+          console.warn('Spread ML model failed:', spreadErr);
+        }
 
-        setRiskPoints(prev => prev.map(p => {
-          if (p.latitude === point.latitude && p.longitude === point.longitude) {
-            return { ...p, risk_score: 99, is_wildfire: true, threat_name: 'CONFIRMED WILDFIRE', detection: detectionData, spreadPrediction: spreadData, detected_at: new Date().toLocaleTimeString() };
-          }
-          return p;
-        }));
+        setRiskPoints(prev =>
+          prev.map(p =>
+            p.latitude === point.latitude && p.longitude === point.longitude
+              ? {
+                  ...p,
+                  risk_score: 99,
+                  is_wildfire: true,
+                  threat_name: 'CONFIRMED WILDFIRE',
+                  detection: detectionData,
+                  spreadPrediction: spreadData,
+                  detected_at: new Date().toLocaleTimeString()
+                }
+              : p
+          )
+        );
 
         setSelectedPoint(prev => ({ ...prev, risk_score: 99, is_wildfire: true, threat_name: 'CONFIRMED WILDFIRE', detection: detectionData, spreadPrediction: spreadData }));
-        handleGenerateDispatch(point, detectionData, weatherPayload);
+        handleGenerateDispatch(point);
       } else {
         const clearData = { latitude: point.latitude, longitude: point.longitude, class_name: 'CLEAR', confidence: 0.99 };
         setActiveDetection(clearData);
         setFireWarning(false);
-        setRiskPoints(prev => prev.map(p => {
-          if (p.latitude === point.latitude && p.longitude === point.longitude) return { ...p, detection: clearData, is_wildfire: false };
-          return p;
-        }));
+        setRiskPoints(prev => prev.map(p => (p.latitude === point.latitude && p.longitude === point.longitude ? { ...p, detection: clearData, is_wildfire: false } : p)));
         setSelectedPoint(prev => ({ ...prev, detection: clearData, is_wildfire: false }));
       }
       setDroneStatus('DISPATCHED');
@@ -444,7 +529,9 @@ export default function App() {
   }, [selectedPoint, activeDetection]);
 
   const polyCoords = useMemo(() => {
-    if (spreadPrediction?.spread_area_geojson?.coordinates?.[0]) return spreadPrediction.spread_area_geojson.coordinates[0].map(c => ({ lat: Number(c), lng: Number(c[0]) }));
+    if (spreadPrediction?.spread_area_geojson?.coordinates?.[0]) {
+      return spreadPrediction.spread_area_geojson.coordinates[0].map(c => ({ lat: Number(c[1]), lng: Number(c[0]) }));
+    }
     if (spreadPrediction?.raw_wkt) return parseWktPolygon(spreadPrediction.raw_wkt);
     if (spreadPrediction?.spread_area) return parseWktPolygon(spreadPrediction.spread_area);
     return null;
@@ -466,8 +553,11 @@ export default function App() {
 
   return (
     <div className="h-screen w-full flex flex-col bg-bg-app font-sans">
-      
-      <TopNav fetchDatabaseState={fetchDatabaseState} isSyncing={isSyncing} />
+      <TopNav 
+        fetchDatabaseState={() => handlePresetClick(hoursAgo)} 
+        isSyncing={isSyncing} 
+        hoursAgo={hoursAgo}
+      />
 
       <div className="flex flex-1 overflow-hidden relative">
         <RiskPanel 
@@ -481,35 +571,82 @@ export default function App() {
         />
 
         <main className="flex-1 relative bg-bg-app">
-          {isLoaded ? (
-            <GoogleMap
-              mapContainerStyle={{ width: '100%', height: '100%' }}
-              center={{ lat: 39.0, lng: 35.0 }}
-              zoom={6}
-              options={{ mapTypeId: 'hybrid', disableDefaultUI: true }}
-              onLoad={onLoad}
-              onUnmount={onUnmount}
-            >
-              {filteredPoints.map((pt, i) => (
-                <Marker 
-                  key={`point-${i}`}
-                  position={{ lat: pt.latitude, lng: pt.longitude }}
-                  title={pt.is_wildfire ? 'ACTIVE WILDFIRE DETECTED' : pt.location || (pt.is_fixed ? 'Fixed Station' : `Risk Sector (${pt.risk_score})`)}
-                  icon={createMarkerIcon(pt)}
-                  onClick={() => handleSelectPoint(pt)}
-                />
-              ))}
+          {/* Loading overlay for fetching historical data */}
+          {isSyncing && (
+            <div className="absolute inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[2px] pointer-events-none transition-opacity duration-300">
+              <div className="bg-slate-900/90 text-white px-6 py-4 rounded-lg shadow-2xl font-mono text-sm border border-slate-700 flex items-center gap-4">
+                <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                <span>Loading Map Data, please wait...</span>
+              </div>
+            </div>
+          )}
 
-              {polyCoords && (
-                <Polygon
-                  paths={polyCoords}
-                  options={{ fillColor: '#ef4444', fillOpacity: 0.45, strokeColor: '#dc2626', strokeOpacity: 0.95, strokeWeight: 2.5, zIndex: 10 }}
+          {isLoaded ? (
+          <GoogleMap
+            mapContainerStyle={{ width: '100%', height: '100%' }}
+            center={MAP_CENTER}
+            zoom={6}
+            options={MAP_OPTIONS}
+            onLoad={onLoad}
+            onUnmount={onUnmount}
+          >
+            {filteredPoints.map((pt, i) => (
+              <Marker 
+                key={`marker-${pt.latitude}-${pt.longitude}-${hoursAgo}-${i}`}
+                position={{ lat: pt.latitude, lng: pt.longitude }}
+                title={pt.is_wildfire ? 'ACTIVE WILDFIRE DETECTED' : pt.location || (pt.is_fixed ? 'Fixed Station' : `Risk Sector (${pt.risk_score})`)}
+                icon={createMarkerIcon(pt)}
+                onClick={() => handleSelectPoint(pt)}
+              />
+            ))}
+
+            {dispatchPlan?.nearest_water_sources?.map((w, idx) => {
+              const lat = Number(w.koordinat_enlem);
+              const lng = Number(w.koordinat_boylam);
+              if (!lat || !lng) return null;
+
+              return (
+                <Marker
+                  key={`water-source-${idx}-${lat}-${lng}`}
+                  position={{ lat, lng }}
+                  title={`[Water Source] ${w.isim || 'Water Supply'} (${w.tip || 'Supply Point'})`}
+                  icon={createWaterMarkerIcon()}
                 />
-              )}
-            </GoogleMap>
+              );
+            })}
+
+            {dispatchPlan?.threatened_facilities?.map((s, idx) => {
+              const lat = Number(s.koordinat_enlem);
+              const lng = Number(s.koordinat_boylam);
+              if (!lat || !lng) return null;
+
+              return (
+                <Marker
+                  key={`threatened-facility-${idx}-${lat}-${lng}`}
+                  position={{ lat, lng }}
+                  title={`[Settlement/Facility] ${s.isim || 'Settlement'} - ${s.nufus_yatak_kapasitesi || 'Threatened Area'}`}
+                  icon={createSettlementMarkerIcon()}
+                />
+              );
+            })}
+
+            {polyCoords && (
+              <Polygon
+                paths={polyCoords}
+                options={POLYGON_STYLE}
+              />
+            )}
+          </GoogleMap>
           ) : (
             <div className="w-full h-full flex items-center justify-center text-text-muted font-mono">Loading Satellite Map...</div>
           )}
+
+          <TimelineSlider 
+            hoursAgo={hoursAgo} 
+            onHourChange={handleHourSliderChange}
+            onPresetClick={handlePresetClick}
+            isSyncing={isSyncing} 
+          />
 
           {fireWarning && (
             <div className="absolute top-4 left-1/2 -translate-x-1/2 z-40 bg-red-600 text-white border-2 border-red-300 px-6 py-3 flex items-center gap-3 shadow-2xl animate-pulse font-mono font-black text-sm tracking-widest rounded">
@@ -544,7 +681,7 @@ export default function App() {
               </div>
               <span className="text-[10px] font-mono bg-red-700/80 px-2 py-0.5 border border-white/20">ACTIVE THREAT</span>
             </div>
-            
+
             <div className="p-4 space-y-5">
               <DetectionPanel currentPointDetection={currentPointDetection} />
               <SpreadPanel spreadPrediction={spreadPrediction} />

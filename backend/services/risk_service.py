@@ -1,3 +1,11 @@
+"""
+FireflAI - Meteorological Risk & Environmental Analysis Service
+
+Executes machine learning wildfire risk forecasting using trained XGBoost models.
+Fetches and aggregates multi-source environmental telemetry (weather forecasts, soil conditions,
+NASA FIRMS active fire proximity, vegetation indices) and calculates comprehensive risk indices.
+"""
+
 import json
 import math
 import os
@@ -15,18 +23,19 @@ import pandas as pd
 from core import constants
 from core.config import settings
 
+# ----------------- DEBUG CONFIGURATION -----------------
+DEBUG_PRINT_MODEL_INPUTS = True
+DEBUG_PRINT_LAT = 37.8       # Target Latitude
+DEBUG_PRINT_LON = 28.2       # Target Longitude
+DEBUG_PRINT_TOLERANCE = 0.05 # Tight tolerance to capture this coordinate
+# -------------------------------------------------------
+
 script_dir = os.path.dirname(os.path.abspath(__file__))
 model_path = os.path.join(
     script_dir, "..", "models", "risk_model", "production_fire_model_xgboost.joblib"
 )
 
 ssl_context = ssl._create_unverified_context()
-
-def _safe_get(arr, idx, fallback):
-    if arr and 0 <= idx < len(arr) and arr[idx] is not None:
-        return float(arr[idx])
-    return float(fallback)
-
 
 class RiskReportWrapper:
 
@@ -51,6 +60,41 @@ class RiskPredictionService:
         except Exception as e:
             print(f"Error loading model: {e}")
             self.model = None
+
+    @staticmethod
+    def _clean_float(val, default_val):
+        """Safely converts a value to float, preventing None or NaN from slipping through."""
+        try:
+            if val is not None:
+                f_val = float(val)
+                if not math.isnan(f_val):
+                    return f_val
+        except (ValueError, TypeError):
+            pass
+        return float(default_val)
+
+    @staticmethod
+    def _safe_get(arr, idx, fallback, default_val):
+        """Safely extracts a value from an array with a fallback chain."""
+        if arr and 0 <= idx < len(arr) and arr[idx] is not None:
+            try:
+                f_val = float(arr[idx])
+                if not math.isnan(f_val):
+                    return f_val
+            except (ValueError, TypeError):
+                pass
+        
+        # Try primary fallback (usually the current live weather)
+        try:
+            if fallback is not None:
+                f_fallback = float(fallback)
+                if not math.isnan(f_fallback):
+                    return f_fallback
+        except (ValueError, TypeError):
+            pass
+            
+        # Hard default if the API completely failed
+        return float(default_val)
 
     @staticmethod
     def _fetch_with_retry(url, retries=2, delay=1.0):
@@ -141,7 +185,8 @@ class RiskPredictionService:
             f"https://api.open-meteo.com/v1/forecast?"
             f"latitude={lats_str}&longitude={lons_str}&"
             f"current=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,rain,is_day&"
-            f"hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,rain"
+            f"hourly=temperature_2m,relative_humidity_2m,wind_speed_10m,wind_direction_10m,rain&"
+            f"timezone=auto"
         )
 
         try:
@@ -192,29 +237,12 @@ class RiskPredictionService:
         default_wdir = 180.0
 
         if target_idx is not None and 0 <= target_idx < len(hourly_times):
-            live_temp = _safe_get(
-                hourly_temps,
-                target_idx,
-                current.get("temperature_2m", default_temp),
-            )
-            live_rh = _safe_get(
-                hourly_rhs,
-                target_idx,
-                current.get("relative_humidity_2m", default_rh),
-            )
-            live_ws = _safe_get(
-                hourly_wss,
-                target_idx,
-                current.get("wind_speed_10m", default_ws),
-            )
-            live_wdir = _safe_get(
-                hourly_wdirs,
-                target_idx,
-                current.get("wind_direction_10m", default_wdir),
-            )
-            live_rain = _safe_get(
-                hourly_rains, target_idx, current.get("rain", 0.0)
-            )
+            live_temp = self._safe_get(hourly_temps, target_idx, current.get("temperature_2m"), default_temp)
+            live_rh = self._safe_get(hourly_rhs, target_idx, current.get("relative_humidity_2m"), default_rh)
+            live_ws = self._safe_get(hourly_wss, target_idx, current.get("wind_speed_10m"), default_ws)
+            live_wdir = self._safe_get(hourly_wdirs, target_idx, current.get("wind_direction_10m"), default_wdir)
+            live_rain = self._safe_get(hourly_rains, target_idx, current.get("rain"), 0.0)
+            
             dt_obj = (
                 datetime.fromisoformat(hourly_times[target_idx])
                 if "T" in hourly_times[target_idx]
@@ -222,36 +250,33 @@ class RiskPredictionService:
             )
             is_day = 1 if 6 <= dt_obj.hour <= 20 else 0
         else:
-            live_temp = float(current.get("temperature_2m") or default_temp)
-            live_rh = float(current.get("relative_humidity_2m") or default_rh)
-            live_ws = float(current.get("wind_speed_10m") or default_ws)
-            live_wdir = float(
-                current.get("wind_direction_10m") or default_wdir
-            )
-            live_rain = float(current.get("rain") or 0.0)
+            live_temp = self._clean_float(current.get("temperature_2m"), default_temp)
+            live_rh = self._clean_float(current.get("relative_humidity_2m"), default_rh)
+            live_ws = self._clean_float(current.get("wind_speed_10m"), default_ws)
+            live_wdir = self._clean_float(current.get("wind_direction_10m"), default_wdir)
+            live_rain = self._clean_float(current.get("rain"), 0.0)
             is_day = int(current.get("is_day", 1))
             dt_obj = target_dt
 
         month_int, hour_int = dt_obj.month, dt_obj.hour
         ndvi, fuel_conifer = self._get_biomass_and_fuel_data(lat, lon)
 
-        surf_temp = float(current.get("surface_temperature") or live_temp)
-        soil_temp = float(
-            current.get("soil_temperature_0_to_10cm") or live_temp
-        )
-        soil_moist = float(current.get("soil_moisture_0_to_10cm") or 0.15)
-        dew_point = float(current.get("dew_point_2m") or 10.0)
-        pressure = float(current.get("surface_pressure") or 1013.0)
-        evap = float(current.get("et0_fao_evapotranspiration") or 0.2)
+        surf_temp = self._clean_float(current.get("surface_temperature"), live_temp)
+        soil_temp = self._clean_float(current.get("soil_temperature_0_to_10cm"), live_temp)
+        soil_moist = self._clean_float(current.get("soil_moisture_0_to_10cm"), 0.15)
+        dew_point = self._clean_float(current.get("dew_point_2m"), 10.0)
+        pressure = self._clean_float(current.get("surface_pressure"), 1013.0)
+        evap = self._clean_float(current.get("et0_fao_evapotranspiration"), 0.2)
 
+        # Bulletproof past arrays against NaNs from the API
         past_rains = [
-            float(r) if r is not None else 0.0 for r in hourly_rains
+            float(r) if r is not None and not math.isnan(float(r)) else 0.0 for r in hourly_rains
         ]
         past_temps = [
-            float(t) if t is not None else live_temp for t in hourly_temps
+            float(t) if t is not None and not math.isnan(float(t)) else live_temp for t in hourly_temps
         ]
         past_rhs = [
-            float(h) if h is not None else live_rh for h in hourly_rhs
+            float(h) if h is not None and not math.isnan(float(h)) else live_rh for h in hourly_rhs
         ]
 
         end_idx = (
@@ -260,22 +285,10 @@ class RiskPredictionService:
         start_3d = max(0, end_idx - 72)
         start_7d = max(0, end_idx - 168)
 
-        rain_3d_sum = (
-            round(sum(past_rains[start_3d:end_idx]), 2) if past_rains else 0.0
-        )
-        rain_7d_sum = (
-            round(sum(past_rains[start_7d:end_idx]), 2) if past_rains else 0.0
-        )
-        temp_3d_max = (
-            round(max(past_temps[start_3d:end_idx]), 2)
-            if past_temps
-            else live_temp
-        )
-        rh_3d_mean = (
-            round(float(np.mean(past_rhs[start_3d:end_idx])), 2)
-            if past_rhs
-            else live_rh
-        )
+        rain_3d_sum = round(sum(past_rains[start_3d:end_idx]), 2) if past_rains else 0.0
+        rain_7d_sum = round(sum(past_rains[start_7d:end_idx]), 2) if past_rains else 0.0
+        temp_3d_max = round(max(past_temps[start_3d:end_idx]), 2) if past_temps else live_temp
+        rh_3d_mean = round(float(np.mean(past_rhs[start_3d:end_idx])), 2) if past_rhs else live_rh
 
         live_dryness = float(live_temp / (live_rh + 0.001))
         vpd = self._calculate_vpd(live_temp, live_rh)
@@ -329,8 +342,27 @@ class RiskPredictionService:
             constants, "FEATURE_COLUMNS", list(input_dict.keys())
         )
         input_df = pd.DataFrame(input_dict)[feature_cols]
+
+        # ----------------- DEBUG PRINT BLOCK -----------------
+        is_targeted_coord = (
+            abs(lat - DEBUG_PRINT_LAT) <= DEBUG_PRINT_TOLERANCE and 
+            abs(lon - DEBUG_PRINT_LON) <= DEBUG_PRINT_TOLERANCE
+        )
+
+        if DEBUG_PRINT_MODEL_INPUTS and is_targeted_coord:
+            clean_payload = {k: v[0] for k, v in input_dict.items()}
+            print(f"\n{'='*25} [ML RISK MODEL INPUT] {'='*25}")
+            print(f"Target Location : {name} ({lat}, {lon})")
+            print(f"Target Timeline : T - {hours_ago}H | Iso Time: {target_dt.isoformat()}")
+            print(f"Features Payload (JSON):\n{json.dumps(clean_payload, indent=2)}")
+            print(f"{'='*72}\n")
+        # -----------------------------------------------------
+
         prob = self.model.predict_proba(input_df)[:, 1][0]
         final_score = round(float(prob * 100), 2)
+
+        if DEBUG_PRINT_MODEL_INPUTS and is_targeted_coord:
+            print(f"--> [ML PREDICTION RESULT] Risk Score: {final_score}% for {name}\n")
 
         day_status_str = "Day" if is_day == 1 else "Night"
         
@@ -345,7 +377,6 @@ class RiskPredictionService:
             "wind_speed": live_ws,
             "wind_direction": live_wdir,
             "is_fixed": is_fixed,
-            # ML & Environmental Features
             "day_status": day_status_str,
             "month": month_int,
             "hour": hour_int,

@@ -1,3 +1,11 @@
+"""
+FireflAI - Drone Vision & Fire Detection API Router
+
+Provides HTTP endpoints and WebSocket streams for real-time aerial fire detection.
+Accepts drone camera video/image feeds, performs YOLO inference, stores detection events
+in the database, and broadcasts emergency alerts to connected clients.
+"""
+
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form, Depends, WebSocket, WebSocketDisconnect
 from typing import List
 from datetime import datetime, timezone

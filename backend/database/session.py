@@ -1,3 +1,10 @@
+"""
+FireflAI - Database Engine & Session Management
+
+Configures the PostgreSQL / SQLite database connection, engine initialization, sessionmaker,
+and provides the FastAPI dependency generator for database session lifecycle handling.
+"""
+
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base

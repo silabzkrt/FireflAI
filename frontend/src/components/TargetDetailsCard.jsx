@@ -1,3 +1,12 @@
+/**
+ * TargetDetailsCard Component
+ * 
+ * Floating tactical overlay card that displays detailed information for a selected
+ * map target (monitoring station, risk grid cell, or confirmed wildfire sector).
+ * Provides interactive action triggers to deploy surveillance drones for ML verification
+ * and initiate automated emergency response dispatches.
+ */
+
 import { Flame, Crosshair, X, Loader2, CheckCircle2, Send, ShieldAlert } from 'lucide-react';
 import { getRiskColor } from '../utils/helpers';
 

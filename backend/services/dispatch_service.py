@@ -1,3 +1,11 @@
+"""
+FireflAI - Tactical Dispatch & Emergency Planning Service
+
+Generates structured TAMP (Türkiye Afet Müdahale Planı) emergency response directives using
+a fine-tuned Qwen-2.5-3B-Instruct model (PEFT/LoRA). Computes spatial proximities to regional
+water sources and settlements via Haversine distance calculations.
+"""
+
 import json
 import math
 import traceback

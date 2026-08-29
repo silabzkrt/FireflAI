@@ -1,3 +1,10 @@
+"""
+FireflAI - Tactical Dispatch Pydantic Schemas
+
+Defines request and response data models for AI-generated tactical dispatch orders,
+incorporating force allocations, weather vectors, nearby water points, and threatened facilities.
+"""
+
 from pydantic import BaseModel, Field
 from typing import Any, Dict, List, Optional
 

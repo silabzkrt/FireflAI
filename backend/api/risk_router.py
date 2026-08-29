@@ -1,3 +1,11 @@
+"""
+FireflAI - Meteorological Risk Assessment API Router
+
+Provides REST endpoints for single-point risk evaluation, country-wide Turkey grid surveillance,
+and historical time-travel analysis. Integrates database caching, real-time meteorological API lookups,
+and XGBoost risk inference scoring across monitored sectors.
+"""
+
 from fastapi import APIRouter, HTTPException, Depends, Query
 from sqlalchemy.orm import Session
 from datetime import datetime, timedelta, timezone
@@ -18,7 +26,7 @@ async def predict_single_point_risk(
 ):
     try:
         hours_ago = payload.hours_ago or 0
-        target_time = datetime.now(timezone.utc) - timedelta(hours=hours_ago)
+        target_time = (datetime.now(timezone.utc) - timedelta(hours=hours_ago)).replace(minute=0, second=0, microsecond=0)
         loc_name = payload.location_name or "Unknown Location"
         
         time_window_start = target_time - timedelta(minutes=30)
@@ -95,13 +103,18 @@ async def get_turkey_grid_risk(
                 "data": RISK_CACHE[hours_ago]
             }
         
-        target_time = datetime.now(timezone.utc) - timedelta(hours=hours_ago)
-        time_window_start = target_time - timedelta(minutes=30)
-        time_window_end = target_time + timedelta(minutes=30)
+        # 1. Force strict hourly time matching (xx:00:00)
+        target_time = (datetime.now(timezone.utc) - timedelta(hours=hours_ago)).replace(minute=0, second=0, microsecond=0)
+        
+        # 2. Tighten window to +/- 1 minute to exclude the background worker's random minute intervals
+        time_window_start = target_time - timedelta(minutes=1)
+        time_window_end = target_time + timedelta(minutes=1)
 
+        # 3. Explicitly filter out risk_level = 0 at the database level
         records = db.query(MeteorologicalRisk).filter(
             MeteorologicalRisk.captured_at >= time_window_start,
-            MeteorologicalRisk.captured_at <= time_window_end
+            MeteorologicalRisk.captured_at <= time_window_end,
+            MeteorologicalRisk.risk_level > 0 
         ).all()
 
         if not records:
@@ -113,13 +126,20 @@ async def get_turkey_grid_risk(
             if calculated_points:
                 new_records = []
                 for p in calculated_points:
-                    lat = p.get("latitude")
-                    lon = p.get("longitude")
-                    score = p.get("risk_score", 0.0)
-                    temp = p.get("temperature")
-                    rh = p.get("humidity")
-                    ws = p.get("wind_speed")
-                    wdir = p.get("wind_direction")
+                    lat = p.get("latitude") if p.get("latitude") is not None else p.get("lat")
+                    lon = p.get("longitude") if p.get("longitude") is not None else p.get("lon")
+                    
+                    raw_score = p.get("risk_score") if p.get("risk_score") is not None else p.get("score")
+                    score = float(raw_score) if raw_score is not None else 0.0
+                    
+                    # 4. Skip saving literal 0.0s to DB to prevent table pollution
+                    if score <= 0.0 and not p.get("is_fixed"):
+                        continue
+                    
+                    temp = p.get("temperature") if p.get("temperature") is not None else p.get("temp")
+                    rh = p.get("humidity") if p.get("humidity") is not None else p.get("rh")
+                    ws = p.get("wind_speed") if p.get("wind_speed") is not None else p.get("ws")
+                    wdir = p.get("wind_direction") if p.get("wind_direction") is not None else p.get("wdir")
 
                     if lat is not None and lon is not None:
                         record = MeteorologicalRisk(
@@ -135,12 +155,15 @@ async def get_turkey_grid_risk(
                         )
                         new_records.append(record)
                 
-                db.bulk_save_objects(new_records)
-                db.commit()
+                if new_records:
+                    db.bulk_save_objects(new_records)
+                    db.commit()
 
+                # Refetch using the same strict rules
                 records = db.query(MeteorologicalRisk).filter(
                     MeteorologicalRisk.captured_at >= time_window_start,
-                    MeteorologicalRisk.captured_at <= time_window_end
+                    MeteorologicalRisk.captured_at <= time_window_end,
+                    MeteorologicalRisk.risk_level > 0
                 ).all()
 
         fixed_locs = getattr(constants, "FIXED_LOCATIONS", [])

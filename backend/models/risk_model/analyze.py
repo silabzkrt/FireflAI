@@ -413,7 +413,8 @@ def analyze_production_fire_risk(location_name, lat, lon, target_date=None):
     input_data = pd.DataFrame(input_dict)[feature_columns]
 
     prob = model.predict_proba(input_data)[:, 1][0]
-    final_score = round(float(prob * 100), 2)
+    boosted_prob = np.clip(prob * 1.25, 0.0, 1.0) 
+    final_score = round(float(boosted_prob * 100), 2)
 
     if final_score < 30.0:
         status = "LOW RISK"

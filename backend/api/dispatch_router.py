@@ -1,3 +1,11 @@
+"""
+FireflAI - AI Tactical Dispatch API Router
+
+Handles emergency response planning endpoints by orchestrating Qwen-3B LLM tactical directive generation,
+retrieving nearby GIS assets (water sources and endangered settlements), and saving actionable dispatch
+plans for OGM / AFAD response teams.
+"""
+
 from typing import Optional
 from fastapi import APIRouter, HTTPException, Depends, Query
 from sqlalchemy.orm import Session
@@ -68,17 +76,27 @@ async def generate_plan(
 
         fire_det_id = detection.id if detection else payload.detection_id
 
+        coords = spread_geojson["coordinates"][0]
+        coord_pairs = ", ".join([f"{pt[0]} {pt[1]}" for pt in coords])
+        wkt_polygon = f"POLYGON(({coord_pairs}))"
+
         new_plan = TacticalDispatchPlan(
             fire_detection_id=fire_det_id,
+            latitude=lat,
+            longitude=lon,
             incident_caption=payload.incident_caption or "Müdahale Planı",
             available_forces=payload.available_forces or "",
-            tactical_order=raw_order
+            tactical_order=raw_order,
+            spread_area_wkt=wkt_polygon
         )
         db.add(new_plan)
         db.commit()
 
         return {
+            "id": new_plan.id,
             "detection_id": fire_det_id,
+            "latitude": lat,
+            "longitude": lon,
             "prediction_hours": payload.prediction_hours,
             "spread_area_geojson": spread_geojson,
             "tactical_order": raw_order,
@@ -89,13 +107,13 @@ async def generate_plan(
     except Exception as e:
         db.rollback()
         traceback.print_exc()
-        raise HTTPException(status_code=500, detail=f"Sevk planı oluşturulamadı: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Could not create dispatch plan {str(e)}")
 
 
 @router.get("/history")
 def get_dispatch_history(
-    limit: int = Query(20, description="Getirilecek plan sayısı (N adet)"),
-    detection_id: Optional[int] = Query(None, description="Opsiyonel: Sadece bu yangına ait planı filtrele"),
+    limit: int = Query(20, description="Number of plans (N)"),
+    detection_id: Optional[int] = Query(None, description="Optional: Only filter plans that belongs to this specific fire."),
     db: Session = Depends(get_db)
 ):
     query = db.query(TacticalDispatchPlan)
@@ -106,12 +124,21 @@ def get_dispatch_history(
 
     results = []
     for p in plans:
+        nearest_water, nearest_settlements = [], []
+        if p.latitude is not None and p.longitude is not None:
+            nearest_water, nearest_settlements = dispatch_service.find_nearest_gis(p.latitude, p.longitude)
+
         results.append({
             "id": p.id,
             "fire_detection_id": p.fire_detection_id,
+            "latitude": p.latitude,
+            "longitude": p.longitude,
             "incident_caption": p.incident_caption,
             "available_forces": p.available_forces,
             "tactical_order": p.tactical_order,
+            "spread_area_wkt": p.spread_area_wkt,
+            "nearest_water_sources": nearest_water,
+            "threatened_facilities": nearest_settlements,
             "created_at": p.created_at.isoformat() if p.created_at else None
         })
     return results
@@ -121,7 +148,7 @@ def get_dispatch_history(
 def get_dispatch_plan_by_id(plan_id: int, db: Session = Depends(get_db)):
     plan = db.query(TacticalDispatchPlan).filter(TacticalDispatchPlan.id == plan_id).first()
     if not plan:
-        raise HTTPException(status_code=404, detail="Sevk planı bulunamadı.")
+        raise HTTPException(status_code=404, detail="No dispatch plan found.")
 
     return {
         "id": plan.id,

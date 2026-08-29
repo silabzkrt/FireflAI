@@ -1,3 +1,12 @@
+/**
+ * DispatchPanel Component
+ * 
+ * Tactical command interface for emergency resource mobilization.
+ * Displays AI-generated TAMP (Türkiye Afet Müdahale Planı) operational directives powered by Qwen-3B,
+ * identifies nearby water replenishment sources and endangered settlements, and enables operators
+ * to confirm and transmit dispatch orders to OGM / AFAD response teams.
+ */
+
 import { Truck, Loader2, RefreshCw, FileText, Droplets, Home, CheckCircle2, Crosshair, ShieldAlert } from 'lucide-react';
 
 export default function DispatchPanel({

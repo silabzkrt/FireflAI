@@ -123,6 +123,39 @@ app.include_router(
     tags=["Model 4: Dispatch"],
 )
 
+import pandas as pd
+# Test with extreme high-risk inputs
+test_dict = {
+    "Temperature": [40.0],
+    "RH": [15.0],
+    "Ws": [35.0],
+    "Wind_Direction": [180.0],
+    "Rain": [0.0],
+    "Rain_3D_Sum": [0.0],
+    "Rain_7D_Sum": [0.0],
+    "Temp_3D_Max": [42.0],
+    "RH_3D_Mean": [20.0],
+    "Dryness_Index": [2.66],
+    "VPD": [6.0],
+    "Surface_Temp": [45.0],
+    "Soil_Temp": [35.0],
+    "Soil_Moisture": [0.05],
+    "Dew_Point": [5.0],
+    "Pressure": [1010.0],
+    "Evapotranspiration": [0.5],
+    "is_day": [1],
+    "month_sin": [-0.866],
+    "month_cos": [-0.5],
+    "hour_sin": [0.0],
+    "hour_cos": [1.0],
+    "NDVI": [0.2],
+    "Fuel_Type_Conifer": [1.0],
+    "Resin_Ignition_Potential": [0.8],
+    "Nearest_Fire_Dist_KM": [0.5],
+    "Wind_Fire_Vector_Alignment": [10.0]
+}
+test_df = pd.DataFrame(test_dict)
+print("EXTREME TEST PREDICTION:", risk_service.model.predict_proba(test_df)[:, 1][0] * 100)
 
 @app.get("/")
 def root():

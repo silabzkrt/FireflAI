@@ -1,3 +1,11 @@
+"""
+FireflAI - SQLAlchemy Database Models
+
+Defines the relational ORM schema for the FireflAI platform, including tables for
+fire detections (drone visual telemetry), meteorological risk logs, generated spread polygons,
+and AI tactical dispatch plans.
+"""
+
 from datetime import datetime, timezone
 import re
 from sqlalchemy import Column, Integer, String, Float, DateTime, ForeignKey, Text

@@ -1,3 +1,10 @@
+"""
+FireflAI - Meteorological Risk Pydantic Schemas
+
+Defines validation schemas for single-point risk requests, detailed risk factor telemetry reports,
+and geographic risk grid responses across surveillance points.
+"""
+
 from typing import Optional, List
 from pydantic import BaseModel, Field
 

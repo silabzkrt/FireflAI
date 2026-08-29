@@ -1,3 +1,11 @@
+/**
+ * DetectionPanel Component
+ * 
+ * Telemetry and classification panel for drone-based computer vision surveillance.
+ * Presents real-time YOLO model inference results, including detected fire/smoke classes,
+ * model confidence scores, precise target coordinates, and frame processing counts.
+ */
+
 import { Target } from 'lucide-react';
 
 export default function DetectionPanel({ currentPointDetection }) {

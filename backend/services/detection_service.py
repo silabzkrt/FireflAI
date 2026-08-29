@@ -1,3 +1,11 @@
+"""
+FireflAI - Drone Vision YOLO Detection Service
+
+Wraps Ultralytics YOLO inference for aerial wildfire surveillance.
+Supports single-frame image analysis and multi-frame video stream decoding, identifying
+smoke and fire classes with bounding boxes and confidence scores.
+"""
+
 import os
 import cv2
 import tempfile

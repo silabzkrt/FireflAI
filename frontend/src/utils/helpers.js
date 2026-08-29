@@ -150,3 +150,46 @@ export const createMarkerIcon = (pt) => {
     anchor: new window.google.maps.Point(20, 20),
   };
 };
+
+export const createWaterMarkerIcon = () => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="#06b6d4" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>`;
+  return {
+    url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`,
+    scaledSize: new window.google.maps.Size(26, 26),
+    anchor: new window.google.maps.Point(13, 26),
+  };
+};
+
+export const createSettlementMarkerIcon = () => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="#f59e0b" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`;
+  return {
+    url: `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`,
+    scaledSize: new window.google.maps.Size(26, 26),
+    anchor: new window.google.maps.Point(13, 26),
+  };
+};
+
+function getRecordedWeatherForPoint(targetLat, targetLng, pointsList) {
+  if (!pointsList || pointsList.length === 0) return null;
+
+  let closest = pointsList[0];
+  let minDistance = Infinity;
+
+  for (const pt of pointsList) {
+    if (pt.wind_speed != null) {
+      const dist = Math.hypot(pt.latitude - targetLat, pt.longitude - targetLng);
+      if (dist < minDistance) {
+        minDistance = dist;
+        closest = pt;
+      }
+    }
+  }
+
+  return {
+    wind_speed: closest.wind_speed ?? 14.0,
+    wind_direction: closest.wind_direction ?? 160.0,
+    temperature: closest.temperature,
+    humidity: closest.humidity,
+    captured_at: closest.captured_at
+  };
+}

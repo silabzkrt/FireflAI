@@ -1,3 +1,10 @@
+"""
+FireflAI - Wildfire Spread Pydantic Schemas
+
+Defines request and response schemas for ML-based wildfire propagation simulations,
+including environmental input parameters, GeoJSON spread polygons, and burn area metrics.
+"""
+
 from pydantic import BaseModel, Field
 from typing import Any, Dict, Optional
 
