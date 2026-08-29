@@ -13,7 +13,7 @@ import numpy as np
 from ultralytics import YOLO
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
-yolo_path = os.path.join(script_dir, "..", "models", "detection_model.pt")
+yolo_path = os.path.join(script_dir, "..", "models", "detection_model", "detection_model.pt")
 
 class YoloDetectionService:
     def __init__(self):
