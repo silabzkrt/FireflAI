@@ -34,7 +34,7 @@ A helper tool for forest fires in which our modules do the following:
 ### Backend & Database
 - **Framework:** Layered RESTful API built with Python and FastAPI, following a Controller-Service-Repository pattern (Routers -> Services -> DB Models).
 - **Database & ORM:** Relational database (PostgreSQL) using SQLAlchemy ORM with PostGIS/GeoAlchemy2 geospatial extensions.
-- **ML & Infrastructure Stack:** Amazon RDS (PostgreSQL), Amazon Bedrock, Amazon SageMaker, AWS ECS, PyTorch, Transformers, PEFT, Accelerate, BitsAndBytes, Scikit-Learn, XGBoost, and APScheduler.
+- **ML & Infrastructure Stack:** Amazon RDS (PostgreSQL), Amazon Bedrock, Amazon SageMaker, AWS ECS, AWS S3, PyTorch, Transformers, PEFT, Accelerate, BitsAndBytes, Scikit-Learn, XGBoost, and APScheduler.
 
 ### Frontend
 - **Core Framework:** Single Page Application (SPA) built with React 19, TypeScript, and Vite.
