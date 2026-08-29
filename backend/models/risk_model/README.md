@@ -2,8 +2,6 @@
 
 This repository contains the Machine Learning model designed to predict wildfire risk probabilities. The model processes real-time and historical meteorological data, topography, vegetation indices, and active fire data to generate a wildfire risk score ranging from 0% to 100%.
 
-This model is used in an early fire detection system. A link to the main project repository will be added once the project is finalized.
-
 ---
 
 ## Model Summary
