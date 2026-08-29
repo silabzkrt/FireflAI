@@ -13,11 +13,30 @@ This repository contains the Machine Learning model designed to predict wildfire
 
 ---
 
+## Model Performance & Evaluation Metrics
+
+Evaluated on a stratified hold-out test set (20% split, 480 samples):
+
+- **Accuracy:** 94.79%
+- **ROC-AUC Score:** 0.9813
+
+### Classification Report
+
+| Class | Precision | Recall | F1-Score | Support |
+| :--- | :---: | :---: | :---: | :---: |
+| **0 (No Fire / Safe)** | 0.93 | 1.00 | 0.96 | 328 |
+| **1 (Fire Risk)** | 1.00 | 0.84 | 0.91 | 152 |
+| **Accuracy** | | | **0.95** | **480** |
+| **Macro Avg** | 0.96 | 0.92 | 0.94 | 480 |
+| **Weighted Avg** | 0.95 | 0.95 | 0.95 | 480 |
+
+---
+
 ## Dataset and Training
 
-- Dataset Size: 1,800 records of physically accurate generated environmental data.
+- Dataset Size: 2,400 records of physics-calibrated generated environmental data.
 - Geographic Scope: Turkey land boundaries (Mediterranean, Aegean, Black Sea, and Inland micro-climates).
-- Integrated Data Sources: Open-Meteo API, NASA FIRMS (VIIRS), and DEM elevation data.
+- Integrated Data Sources: Open-Meteo API, NASA FIRMS (VIIRS/MODIS), and DEM elevation data.
 
 ---
 
