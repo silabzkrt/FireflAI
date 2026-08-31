@@ -1,78 +1,26 @@
-# Wildfire Risk Prediction Model (XGBoost)
+# FireflAI: Tactical Dispatch Agent (LLM)
 
-This repository contains the Machine Learning model designed to predict wildfire risk probabilities. The model processes real-time and historical meteorological data, topography, vegetation indices, and active fire data to generate a wildfire risk score ranging from 0% to 100%.
+## 1. Overview
+This sub-module houses the **Tactical Dispatch Agent**, the central decision-support engine of the FireflAI platform. Functioning as an Intelligent Virtual Situation Room (IVSR) orchestrator, this Large Language Model (LLM) synthesizes multimodal disaster telemetry (spread polygons, wind vectors) and GIS inventory data to autonomously generate actionable, military-grade tactical deployment orders for human responders.
 
-This model is used in an early fire detection system. A link to the main project repository will be added once the project is finalized.
+## 2. Model Architecture and Optimization
+The core intelligence is built upon the **Qwen/Qwen2.5-3B-Instruct** foundation model. To achieve high operational reliability while running entirely on edge hardware, the architecture implements several advanced optimization techniques:
+* **Parameter-Efficient Fine-Tuning (PEFT):** The model is fine-tuned using **Low-Rank Adaptation (LoRA)** on historical dispatch logs and emergency response manuals. This aligns the model's internal weights with the strict bureaucratic and tactical terminology required by institutional protocols.
+* **4-bit Quantization:** To drastically reduce VRAM overhead and inference latency (Time-to-Action), the model is loaded using **BitsAndBytes (nf4 - NormalFloat4)**. This allows the 3-billion parameter model to run highly efficiently on consumer-grade GPUs without significant degradation in reasoning capabilities.
 
----
+## 3. Spatial RAG (Retrieval-Augmented Generation)
+Standard LLMs are prone to spatial hallucination (e.g., inventing nonexistent resources or false GPS coordinates). To mitigate this, the Dispatch Model employs a dynamic GIS injection mechanism:
+1. **Haversine Proximity Search:** Upon receiving a fire coordinate, the system calculates the exact geographic distance to all regional water sources (`su_kaynaklari.json`) and vulnerable infrastructure (`yerlesim_ve_tesisler.json`).
+2. **Context Injection:** The top-$K$ nearest verified assets are injected directly into the LLM's system prompt prior to inference, grounding the generation strictly in verifiable geographic reality.
 
-## Model Summary
+## 4. Inference and Decoding Strategy
+The generation pipeline is mathematically constrained to prioritize factual determinism over creative divergence:
+* **Greedy Decoding:** `do_sample=False` is enforced to ensure the model takes the highest-probability token at every step, virtually eliminating hallucinations in GPS coordinate regurgitation.
+* **Repetition Penalty:** Set to `1.05` to prevent degenerative looping when formulating complex tactical instructions.
+* **System Prompting Constraint:** The model is strictly instructed to format its output according to the **TAMP (Türkiye Afet Müdahale Planı)** directives, enforcing the use of exact `[Latitude, Longitude]` coordinates for defense sectors and asset deployments.
 
-- Algorithm: XGBoost Classifier (XGBClassifier)
-- Output: Wildfire risk probability score (%0 - %100)
-- Model File: production_fire_model_xgboost.joblib
-- Objective: Calculate the wildfire risk score for a specific coordinate based on input features.
-
----
-
-## Dataset and Training
-
-- Dataset Size: 1,800 records of physically accurate generated environmental data.
-- Geographic Scope: Turkey land boundaries (Mediterranean, Aegean, Black Sea, and Inland micro-climates).
-- Integrated Data Sources: Open-Meteo API, NASA FIRMS (VIIRS), and DEM elevation data.
-
----
-
-## Input Features (27 Variables)
-
-The model requires 27 specific parameters to compute the risk score:
-
-1. Meteorology (Live and Past Accumulations)
-- Temperature: Live 2m air temperature (°C)
-- RH: Live relative humidity (%)
-- Ws: Wind speed at 10m (km/h)
-- Wind_Direction: Wind direction in degrees (0°–360°)
-- Rain: Live precipitation amount (mm)
-- Rain_3D_Sum: Cumulative rainfall over the last 3 days (mm)
-- Rain_7D_Sum: Cumulative rainfall over the last 7 days (mm)
-- Temp_3D_Max: Maximum temperature recorded in the last 3 days (°C)
-- RH_3D_Mean: Average relative humidity over the last 3 days (%)
-
-2. Derived Risk Indices
-- Dryness_Index: Dryness ratio derived from temperature and humidity (Temp / (RH + 1e-5))
-- VPD: Vapor Pressure Deficit (kPa)
-- Resin_Ignition_Potential: Resin potential calculated using vegetation type, NDVI, and dryness
-
-3. Soil and Hydrology
-- Surface_Temp: Land surface temperature (°C)
-- Soil_Temp: Soil temperature at 0–10cm depth (°C)
-- Soil_Moisture: Soil moisture content at 0–10cm depth (m³/m³)
-- Dew_Point: Dew point temperature (°C)
-- Pressure: Surface pressure (hPa)
-- Evapotranspiration: FAO evapotranspiration rate (mm)
-
-4. Time Variables
-- is_day: Day (1) / Night (0) indicator
-- month_sin, month_cos: Sine and cosine cyclical transformations of the month
-- hour_sin, hour_cos: Sine and cosine cyclical transformations of the hour
-
-5. Vegetation and Land Cover
-- NDVI: Normalized Difference Vegetation Index
-- Fuel_Type_Conifer: Coniferous forest density ratio (0.0 – 1.0)
-
-6. Active Fire Alignment and Proximity
-- Nearest_Fire_Dist_KM: Distance to the nearest active NASA FIRMS fire point (km)
-- Wind_Fire_Vector_Alignment: Angle difference between wind direction and nearest active fire vector (°)
-
----
-
-## Risk Thresholds
-
-- 0% - 39%: Low Risk
-- 40% - 60%: Medium Risk
-- 61% - 85%: High Risk
-- 86% - 100%: Critical Risk (Rendered and highlighted directly on the map)
-
-## Note on the Map
-
-The map (turkey_map.html) is for testing purposes only. It was created to visualize fire risk detection during development. The committed version is not up to date. To generate the latest version, please run the "map.py" Python script.
+## 5. Scientific Evaluation Metrics
+The efficacy of the Dispatch Agent is evaluated against standard NLP and emergency management metrics:
+* **Spatial Exact Match (EM):** A binary metric (0 or 1) verifying that the GPS coordinates produced in the output text flawlessly match the injected GIS data without corruption.
+* **ROUGE-L & BERTScore:** Measures the structural and semantic alignment of the generated tactical orders against historical ground-truth orders drafted by veteran Incident Commanders.
+* **Inference Latency:** Measured in Tokens Per Second (TPS) and Time-to-First-Token (TTFT), ensuring the model maintains critical operational speed during internet-denied disaster scenarios where cloud APIs fail.
