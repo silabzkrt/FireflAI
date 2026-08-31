@@ -23,7 +23,7 @@ Integrated into our autonomous VTOL drone concept, this model operates with imme
 
 
 Installation and Quick Start
-To test the model (detection model.pt) on your local machine with a live video, simply load the necessary dependencies and execute the script:
+To test the model (detection_model.pt) on your local machine with a live video, simply load the necessary dependencies and execute the script:
 
 Requirements: pip install ultralytics opencv-python requests
 
