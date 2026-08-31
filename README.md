@@ -47,9 +47,29 @@ A helper tool for forest fires in which our modules do the following:
 - **Spread Router (`/api/v1/spread`)**: Accepts a detection ID, triggers the spatial LLM/LoRA model, and returns a WKT Polygon of the predicted spread area.
 - **Dispatch Router (`/api/v1/dispatch`)**: Generates tactical dispatch orders based on active detection and predicted spread.
 
----
+## Installation and Running
+
+Follow these steps to run the project locally:
+
+1. Clone the repository: \
+git clone https://github.com/silabzkrt/FireflAI \
+cd FireflAI
+
+2. Backend Setup: \
+cd backend \
+uvicorn main:app --reload --port 8000
+
+3. Frontend Setup: \
+cd frontend \
+npm install \
+npm run dev 
 
 ## Team
 - **Ali İhsan Sevindi**
 - **Elif Bozkurt**
 - **Sıla Bozkurt**
+
+## Mentor
+**Kürşat Çakır**
+
+---
