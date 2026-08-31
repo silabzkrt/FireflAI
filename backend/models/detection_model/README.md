@@ -13,13 +13,13 @@ Visual Camouflage (Hard Negatives): A strict "Hard Negatives" strategy was appli
 Field Tests and Performance
 Integrated into our autonomous VTOL drone concept, this model operates with immense accuracy under harsh terrain conditions:
 
-![Detection 1](Detection Example 1.jpg)
+![Dataset](Dataset.jpeg)
 
+![Detection 1](Detection%20Example%201.png)
 
-![Detection 3](Detection Example 3.jpeg)
+![Detection 3](Detection%20Example%203.jpeg)
 
-
-![Detection 2](Detection Example 2.jpeg)
+![Detection 2](Detection%20Example%202.jpeg)
 
 
 Installation and Quick Start
