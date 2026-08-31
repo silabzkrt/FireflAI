@@ -37,7 +37,7 @@ A helper tool for forest fires in which our modules do the following:
 - **ML & Infrastructure Stack:** Amazon RDS (PostgreSQL), Amazon Bedrock, Amazon SageMaker, AWS ECS, AWS S3, PyTorch, Transformers, PEFT, Accelerate, BitsAndBytes, Scikit-Learn, XGBoost, and APScheduler.
 
 ### Frontend
-- **Core Framework:** Single Page Application (SPA) built with React 19, TypeScript, and Vite.
+- **Core Framework:** Single Page Application (SPA) built with React 19, TypeScript, JavaScript, and Vite.
 - **Styling & Visualization:** Tailwind CSS and Google Maps API for real-time geospatial visualization.
 
 ## API Endpoints
